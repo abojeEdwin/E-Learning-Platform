@@ -1,0 +1,6 @@
+#For development use alone
+
+spring.application.name=""
+spring.datasource.url=""
+spring.datasource.password=""
+spring.datasource.username= ""
