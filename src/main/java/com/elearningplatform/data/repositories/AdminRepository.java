@@ -1,4 +1,4 @@
-package com.elearningplatform.data.repositories.AdminRepository;
+package com.elearningplatform.data.repositories;
 
 
 import com.elearningplatform.data.model.Admin;

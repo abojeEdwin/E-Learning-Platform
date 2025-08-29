@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourcePerFileMappings">
-    <file url="file://$PROJECT_DIR$/src/main/resources/script.sql" value="e01fbc71-8ca5-4c9f-ad86-6a015b28dfdf" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/e01fbc71-8ca5-4c9f-ad86-6a015b28dfdf/console.sql" value="e01fbc71-8ca5-4c9f-ad86-6a015b28dfdf" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/e01fbc71-8ca5-4c9f-ad86-6a015b28dfdf/console_1.sql" value="e01fbc71-8ca5-4c9f-ad86-6a015b28dfdf" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/e01fbc71-8ca5-4c9f-ad86-6a015b28dfdf/console_2.sql" value="e01fbc71-8ca5-4c9f-ad86-6a015b28dfdf" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/e01fbc71-8ca5-4c9f-ad86-6a015b28dfdf/console_3.sql" value="e01fbc71-8ca5-4c9f-ad86-6a015b28dfdf" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/e01fbc71-8ca5-4c9f-ad86-6a015b28dfdf/console_4.sql" value="e01fbc71-8ca5-4c9f-ad86-6a015b28dfdf" />
   </component>
 </project>

@@ -20,7 +20,8 @@ import java.util.Set;
 public class Client {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @Column(nullable = false, unique = true, length = 100)
     private String email;
@@ -28,7 +29,7 @@ public class Client {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
     @Column(nullable = true, length = 100)
@@ -46,19 +47,24 @@ public class Client {
     @Column(nullable = true)
     private String location;
 
-    @ManyToMany(mappedBy = "clients")
-    private Set<Teacher> teachers;
-
     @Column(nullable = false)
     private Gender gender;
 
     @Column(nullable = true)
     private Status status;
 
-    @ManyToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany
+    @JoinTable(
+            name = "teacher_cilent",
+            joinColumns = @JoinColumn(name = "client_id"),
+            inverseJoinColumns = @JoinColumn(name = "teacher_id")
+    )
+    private Set<Teacher> teacherList;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Post> posts;
 
-    @ManyToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Chat> chats;
 
     @Column(nullable = false)

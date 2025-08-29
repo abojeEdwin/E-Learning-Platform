@@ -27,8 +27,7 @@ public class Admin {
     private String password;
 
     @Column(nullable = false)
-    private Roles roles;
-
-
+    @Enumerated(EnumType.STRING)
+    private Roles role;
 
 }

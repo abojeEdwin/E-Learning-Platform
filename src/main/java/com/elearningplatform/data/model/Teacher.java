@@ -3,6 +3,8 @@ package com.elearningplatform.data.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -16,7 +18,8 @@ import java.util.Set;
 public class Teacher {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false, unique = true, length = 100)
     private String email;
@@ -24,7 +27,10 @@ public class Teacher {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false)
+    private String username;
+
+    @Column(nullable = true, length = 100)
     private String fullName;
 
     @Column(nullable = false)
@@ -41,9 +47,21 @@ public class Teacher {
 
     @ManyToMany
     @JoinTable(
-            name = "client",
-            joinColumns = @JoinColumn(name = "id"),
-            inverseJoinColumns = @JoinColumn(name = "id")
+            name = "teacher_client",
+            joinColumns = @JoinColumn(name = "teacher_id"),
+            inverseJoinColumns = @JoinColumn(name = "client_id")
     )
-    private Set<Client> clients;
+    private Set<Client> clientList;
+
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Chat> chats;
+
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Post> posts;
+
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
+
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
 }

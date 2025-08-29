@@ -2,10 +2,11 @@ package com.elearningplatform.config;
 
 import com.elearningplatform.data.model.Admin;
 import com.elearningplatform.data.model.Roles;
-import com.elearningplatform.data.repositories.AdminRepository.AdminRepository;
+import com.elearningplatform.data.repositories.AdminRepository;
+
 import lombok.RequiredArgsConstructor;
 
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +14,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @RequiredArgsConstructor
-@Slf4j
 public class AdminInitializer {
 
     private final AdminRepository adminRepository;
@@ -26,7 +26,7 @@ public class AdminInitializer {
     @Value("${app.admin.password}")
     private String password;
     @Value("${app.admin.role}")
-    private String role;
+    private Roles role;
 
 
     @Bean
@@ -37,7 +37,7 @@ public class AdminInitializer {
                         .username(userName)
                         .email(email)
                         .password(config.passwordEncoder().encode(password))
-                        .roles(Roles.valueOf(role))
+                        .role(Roles.SUPER_ADMIN)
                         .build();
                 adminRepository.save(admin);
                 System.out.println("SuperAdmin created: " + userName);
