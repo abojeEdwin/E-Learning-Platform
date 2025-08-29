@@ -1,7 +1,6 @@
 package com.elearningplatform.config;
 
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,7 +29,8 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/").permitAll()
+                        .requestMatchers("/ws/**").permitAll()
+                        .requestMatchers("/hello").permitAll()
                         .anyRequest().hasAnyRole("/")
                 )
                 .authenticationProvider(authenticationProvider)
@@ -39,6 +39,5 @@ public class SecurityConfig {
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
-
 
 }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
 
-    @GetMapping()
+    @GetMapping("/hello")
     public String wakeUp(){
         return("Hello World");
     }
