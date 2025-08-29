@@ -7,7 +7,9 @@ import com.elearningplatform.dto.request.LoginClientRequest;
 import com.elearningplatform.dto.request.RegisterClientRequest;
 import com.elearningplatform.dto.response.LoginClientResponse;
 import com.elearningplatform.dto.response.RegisterClientResponse;
+import com.elearningplatform.exception.ClientNotFoundException;
 import com.elearningplatform.exception.EmailAlreadyExistException;
+import com.elearningplatform.exception.InvalidPasswordException;
 import com.elearningplatform.exception.UsernameAlreadyExistException;
 import com.elearningplatform.service.ClientAuthService;
 import com.elearningplatform.util.AppUtils;
@@ -58,7 +60,18 @@ public class ClientAuthImpl implements ClientAuthService {
 
     @Override
     public LoginClientResponse login(LoginClientRequest request) {
+        Client foundClient = clientRepository.findByEmail(request.getEmail());
+        if(!AppUtils.verifyPassword(foundClient.getPassword(),request.getPassword())){
+            throw new InvalidPasswordException(INVALID_PASSWORD);}
+        if(foundClient == null){
+            throw new ClientNotFoundException(CLIENT_NOT_FOUND);}
 
-        return null;
+        String token = jwtUtils.generateToken(foundClient);
+        LoginClientResponse response = new LoginClientResponse();
+        response.setToken(token);
+        response.setSuccess(Boolean.TRUE);
+        response.setClient(foundClient);
+        response.setMessage(CLIENT_LOGIN_SUCCESSFULLY);
+        return response;
     }
 }
