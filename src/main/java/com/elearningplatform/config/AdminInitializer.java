@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 public class AdminInitializer {
 
     private final AdminRepository adminRepository;
-    private final SecurityConfig config;
+    private final ApplicationConfig config;
 
     @Value("${app.admin.username}")
     private String userName;
