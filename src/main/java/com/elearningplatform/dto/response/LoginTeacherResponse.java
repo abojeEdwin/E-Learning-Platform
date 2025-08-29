@@ -1,7 +1,7 @@
 package com.elearningplatform.dto.response;
 
 
-import com.elearningplatform.data.model.Client;
+import com.elearningplatform.data.model.Teacher;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +10,7 @@ import lombok.Setter;
 public class LoginTeacherResponse {
 
     private String message;
-    private Client client;
+    private Teacher teacher;
     private String token;
     private Boolean success;
 }
