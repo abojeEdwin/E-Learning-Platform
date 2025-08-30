@@ -10,10 +10,7 @@ import com.elearningplatform.dto.response.LoginClientResponse;
 import com.elearningplatform.dto.response.LoginTeacherResponse;
 import com.elearningplatform.dto.response.RegisterClientResponse;
 import com.elearningplatform.dto.response.RegisterTeacherResponse;
-import com.elearningplatform.exception.ClientNotFoundException;
-import com.elearningplatform.exception.EmailAlreadyExistException;
-import com.elearningplatform.exception.InvalidPasswordException;
-import com.elearningplatform.exception.UsernameAlreadyExistException;
+import com.elearningplatform.exception.*;
 import com.elearningplatform.service.TeacherAuthService;
 import com.elearningplatform.util.AppUtils;
 import com.elearningplatform.util.JwtUtils;
@@ -70,7 +67,7 @@ public class TeacherAuthImpl implements TeacherAuthService {
         if(!AppUtils.verifyPassword(foundTeacher.getPassword(),loginRequest.getPassword())){
             throw new InvalidPasswordException(INVALID_PASSWORD);}
         if(foundTeacher == null){
-            throw new ClientNotFoundException(TEACHER_NOT_FOUND);}
+            throw new TeacherNotFoundException(TEACHER_NOT_FOUND);}
 
         String token = jwtUtils.generateToken(foundTeacher);
         LoginTeacherResponse response = new LoginTeacherResponse();
@@ -78,6 +75,7 @@ public class TeacherAuthImpl implements TeacherAuthService {
         response.setSuccess(Boolean.TRUE);
         response.setTeacher(foundTeacher);
         response.setMessage(TEACHER_LOGIN_SUCCESSFULLY);
+
         return response;
     }
 }

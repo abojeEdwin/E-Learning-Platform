@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/ws/**").permitAll()
                         .requestMatchers("/api/v1/clientAuth/**").permitAll()
-                        .requestMatchers("/hello").permitAll()
+                        .requestMatchers("/api/v1/teacherAuth/**").permitAll()
                         .anyRequest().hasAnyRole("/")
                 )
                 .authenticationProvider(authenticationProvider)
