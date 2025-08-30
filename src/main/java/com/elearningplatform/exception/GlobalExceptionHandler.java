@@ -28,6 +28,17 @@ public class GlobalExceptionHandler {
     }
 
 
+    @ExceptionHandler(TeacherNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleUserNotFound(TeacherNotFoundException ex) {
+        Map<String, String> body = new HashMap<>();
+        body.put("message", ex.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(body);
+    }
+
+
     @ExceptionHandler(EmailAlreadyExistException.class)
     public ResponseEntity<Map<String, String>> handleEmailAlreadyExist(EmailAlreadyExistException ex) {
         Map<String, String> body = new HashMap<>();
@@ -37,15 +48,15 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.CONFLICT)
                 .body(body);
     }
-//
-//    @ExceptionHandler(AdminNotFoundException.class)
-//    public ResponseEntity<Map<String, String>> handleAdminNotFound(AdminNotFoundException ex) {
-//        Map<String, String> body = new HashMap<>();
-//        body.put("message", ex.getMessage());
-//        return ResponseEntity
-//                .status(HttpStatus.NOT_FOUND)
-//                .body(body);
-//    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleAdminNotFound(UserNotFoundException ex) {
+        Map<String, String> body = new HashMap<>();
+        body.put("message", ex.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(body);
+    }
 
 
 //    @ExceptionHandler(InvalidLoginCredentials.class)
