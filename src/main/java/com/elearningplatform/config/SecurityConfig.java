@@ -30,6 +30,7 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/ws/**").permitAll()
+                        .requestMatchers("/api/v1/clientAuth/**").permitAll()
                         .requestMatchers("/hello").permitAll()
                         .anyRequest().hasAnyRole("/")
                 )

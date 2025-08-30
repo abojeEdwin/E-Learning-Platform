@@ -44,6 +44,7 @@ public class ClientAuthImpl implements ClientAuthService {
         client.setRoles(request.getRole());
         client.setPassword(hashedPassword);
         client.setGender(request.getGender());
+        client.setUsername(request.getUserName());
         client.setCreatedAt(LocalDateTime.now());
         client.setUpdatedAt(LocalDateTime.now());
         Client savedClient = clientRepository.save(client);
