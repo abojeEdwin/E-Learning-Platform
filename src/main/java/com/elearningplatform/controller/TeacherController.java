@@ -1,9 +1,7 @@
 package com.elearningplatform.controller;
 
-import com.elearningplatform.dto.request.LoginClientRequest;
 import com.elearningplatform.dto.request.LoginTeacherRequest;
 import com.elearningplatform.dto.request.RegisterTeacherRequest;
-import com.elearningplatform.dto.response.LoginClientResponse;
 import com.elearningplatform.dto.response.LoginTeacherResponse;
 import com.elearningplatform.dto.response.RegisterTeacherResponse;
 import com.elearningplatform.service.AuthImpl.TeacherAuthImpl;

@@ -1,14 +1,12 @@
 package com.elearningplatform.service.AuthImpl;
 
 
-import com.elearningplatform.data.model.Client;
+
 import com.elearningplatform.data.model.Teacher;
 import com.elearningplatform.data.repositories.TeacherRepository;
 import com.elearningplatform.dto.request.LoginTeacherRequest;
 import com.elearningplatform.dto.request.RegisterTeacherRequest;
-import com.elearningplatform.dto.response.LoginClientResponse;
 import com.elearningplatform.dto.response.LoginTeacherResponse;
-import com.elearningplatform.dto.response.RegisterClientResponse;
 import com.elearningplatform.dto.response.RegisterTeacherResponse;
 import com.elearningplatform.exception.*;
 import com.elearningplatform.service.TeacherAuthService;
@@ -56,7 +54,6 @@ public class TeacherAuthImpl implements TeacherAuthService {
         response.setSuccess(Boolean.TRUE);
         response.setToken(token);
         response.setTeacher(savedTeacher);
-
         return response;
 
     }
@@ -75,7 +72,6 @@ public class TeacherAuthImpl implements TeacherAuthService {
         response.setSuccess(Boolean.TRUE);
         response.setTeacher(foundTeacher);
         response.setMessage(TEACHER_LOGIN_SUCCESSFULLY);
-
         return response;
     }
 }
