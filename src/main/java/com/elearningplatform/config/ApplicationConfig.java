@@ -1,5 +1,6 @@
 package com.elearningplatform.config;
 
+import com.elearningplatform.data.repositories.AdminRepository;
 import com.elearningplatform.data.repositories.ClientRepository;
 import com.elearningplatform.data.repositories.TeacherRepository;
 import com.elearningplatform.exception.UserNotFoundException;
@@ -26,6 +27,7 @@ public class ApplicationConfig {
 
     private final TeacherRepository teacherRepository;
     private final ClientRepository clientRepository;
+    private final AdminRepository adminRepository;
 
 
     @Bean
@@ -38,6 +40,10 @@ public class ApplicationConfig {
         return username -> {
             UserDetails user = clientRepository.findByUsername(username)
                     .orElse(null);
+            if(user == null) {
+                UserDetails admin = adminRepository.findByUsername(username)
+                        .orElse(null);
+            }
             if (user == null) {
                UserDetails teacher = teacherRepository.findByUsername(username)
                        .orElseThrow(() -> new UserNotFoundException(USER_NOT_FOUND));
