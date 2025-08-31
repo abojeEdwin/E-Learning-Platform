@@ -22,7 +22,7 @@ public class RegisterTeacherRequest {
     @NotEmpty(message="This field is required")
     private String userName;
 
-    @NotEmpty(message="This field is required")
+    @NotNull(message="This field is required")
     private Roles role;
 
     @NotNull(message="This field is required")

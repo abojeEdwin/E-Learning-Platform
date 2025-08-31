@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/v1/clientAuth")
+@RequestMapping("/api/v1/client-auth")
 public class ClientController {
 
     @Autowired

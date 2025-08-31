@@ -3,6 +3,7 @@ package com.elearningplatform.service.AuthImpl;
 
 import com.elearningplatform.data.model.Client;
 import com.elearningplatform.data.repositories.ClientRepository;
+import com.elearningplatform.data.repositories.TeacherRepository;
 import com.elearningplatform.dto.request.LoginClientRequest;
 import com.elearningplatform.dto.request.RegisterClientRequest;
 import com.elearningplatform.dto.response.LoginClientResponse;
@@ -27,13 +28,15 @@ public class ClientAuthImpl implements ClientAuthService {
     @Autowired
     private ClientRepository clientRepository;
     @Autowired
+    private TeacherRepository teacherRepository;
+    @Autowired
     private AppUtils appUtils;
     @Autowired
     private JwtUtils jwtUtils;
 
     @Override
     public RegisterClientResponse register(RegisterClientRequest request) {
-        if(clientRepository.existsByEmail(request.getEmail())){
+        if(clientRepository.existsByEmail(request.getEmail()) || teacherRepository.existsByEmail(request.getEmail())) {
             throw new EmailAlreadyExistException(EMAIL_ALREADY_EXIST);}
         if(clientRepository.existsByUsername(request.getUserName())){
             throw new UsernameAlreadyExistException(USERNAME_ALREADY_EXIST);}

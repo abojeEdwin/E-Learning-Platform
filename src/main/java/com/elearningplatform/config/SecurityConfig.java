@@ -30,8 +30,8 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/ws/**").permitAll()
-                        .requestMatchers("/api/v1/clientAuth/**").permitAll()
-                        .requestMatchers("/api/v1/teacherAuth/**").permitAll()
+                        .requestMatchers("/api/v1/client-auth/**").permitAll()
+                        .requestMatchers("/api/v1/teacher-auth/**").permitAll()
                         .anyRequest().hasAnyRole("/")
                 )
                 .authenticationProvider(authenticationProvider)

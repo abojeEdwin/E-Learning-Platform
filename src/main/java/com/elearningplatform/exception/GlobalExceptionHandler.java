@@ -21,7 +21,6 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleUserNotFound(ClientNotFoundException ex) {
         Map<String, String> body = new HashMap<>();
         body.put("message", ex.getMessage());
-
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(body);
@@ -32,7 +31,6 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleUserNotFound(TeacherNotFoundException ex) {
         Map<String, String> body = new HashMap<>();
         body.put("message", ex.getMessage());
-
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(body);
@@ -43,7 +41,6 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleEmailAlreadyExist(EmailAlreadyExistException ex) {
         Map<String, String> body = new HashMap<>();
         body.put("message", ex.getMessage());
-
         return ResponseEntity
                 .status(HttpStatus.CONFLICT)
                 .body(body);

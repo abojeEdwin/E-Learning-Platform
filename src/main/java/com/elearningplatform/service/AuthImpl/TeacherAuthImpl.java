@@ -3,6 +3,7 @@ package com.elearningplatform.service.AuthImpl;
 
 
 import com.elearningplatform.data.model.Teacher;
+import com.elearningplatform.data.repositories.ClientRepository;
 import com.elearningplatform.data.repositories.TeacherRepository;
 import com.elearningplatform.dto.request.LoginTeacherRequest;
 import com.elearningplatform.dto.request.RegisterTeacherRequest;
@@ -25,6 +26,8 @@ public class TeacherAuthImpl implements TeacherAuthService {
     @Autowired
     private TeacherRepository teacherRepository;
     @Autowired
+    private ClientRepository clientRepository;
+    @Autowired
     private AppUtils appUtils;
     @Autowired
     private JwtUtils jwtUtils;
@@ -32,7 +35,7 @@ public class TeacherAuthImpl implements TeacherAuthService {
 
     @Override
     public RegisterTeacherResponse register(RegisterTeacherRequest request) {
-        if(teacherRepository.existsByEmail(request.getEmail())){
+        if(teacherRepository.existsByEmail(request.getEmail()) || clientRepository.existsByEmail(request.getEmail())) {
             throw new EmailAlreadyExistException(EMAIL_ALREADY_EXIST);}
         if(teacherRepository.existsByUsername(request.getUserName())){
             throw new UsernameAlreadyExistException(USERNAME_ALREADY_EXIST);}

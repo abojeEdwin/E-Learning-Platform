@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/v1/TeacherAuth")
+@RequestMapping("/api/v1/teacher-auth")
 public class TeacherController {
 
     @Autowired
