@@ -12,4 +12,5 @@ public class LoginAdminResponse {
     private String message;
     private Boolean success;
     private Admin admin;
+    private String token;
 }

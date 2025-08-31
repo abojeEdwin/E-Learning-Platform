@@ -15,6 +15,10 @@ public class AppUtils {
     public static final String CLIENT_LOGIN_SUCCESSFULLY = "Login successful";
     public static final String TEACHER_NOT_FOUND = "Teacher not found, please check your credentials";
     public static final String TEACHER_LOGIN_SUCCESSFULLY = "Login successful";
+    public static final String SUPER_ADMIN_NOT_FOUND = "Super admin not found, please check your credentials";
+    public static final String ADMIN_LOGIN_SUCCESSFULLY = "Login successful";
+    public static final String ADMIN_NOT_FOUND = "Admin not found, please check your credentials";
+
 
 
     private static BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();

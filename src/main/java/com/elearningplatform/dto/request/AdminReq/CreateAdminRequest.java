@@ -1,5 +1,6 @@
 package com.elearningplatform.dto.request.AdminReq;
 
+import com.elearningplatform.data.model.Roles;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -15,4 +16,7 @@ public class CreateAdminRequest {
     private String password;
     @NotNull(message = "This field is required")
     private String userName;
+    @NotNull(message = "This field is required")
+    private Long superAdminId;
+
 }

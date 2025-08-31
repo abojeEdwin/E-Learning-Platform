@@ -56,13 +56,13 @@ public class GlobalExceptionHandler {
     }
 
 
-//    @ExceptionHandler(InvalidLoginCredentials.class)
-//    public ResponseEntity<Map<String, String>> handleInvalidLoginCredentials(InvalidLoginCredentials ex) {
-//        Map<String, String> body = new HashMap<>();
-//        body.put("message", ex.getMessage());
-//        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//                .body(body);
-//    }
+    @ExceptionHandler(SuperAdminNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleInvalidLoginCredentials(SuperAdminNotFoundException ex) {
+        Map<String, String> body = new HashMap<>();
+        body.put("message", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(body);
+    }
 
     @ExceptionHandler(InvalidPasswordException.class)
     public ResponseEntity<Map<String, String>> handleInvalidPassword(InvalidPasswordException ex) {
@@ -71,14 +71,14 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(body);
     }
-//
-//    @ExceptionHandler(InvalidEmailException.class)
-//    public ResponseEntity<Map<String, String>> handleInvalidEmail(InvalidEmailException ex) {
-//        Map<String, String> body = new HashMap<>();
-//        body.put("message", ex.getMessage());
-//        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//                .body(body);
-//    }
+
+    @ExceptionHandler(AdminNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleInvalidEmail(AdminNotFoundException ex) {
+        Map<String, String> body = new HashMap<>();
+        body.put("message", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(body);
+    }
 
     @ExceptionHandler(UsernameAlreadyExistException.class)
     public ResponseEntity<Map<String, String>> handleUserNameAlreadyExist(UsernameAlreadyExistException ex) {
