@@ -1,9 +1,9 @@
 package com.elearningplatform.service;
 
-import com.elearningplatform.dto.request.LoginClientRequest;
-import com.elearningplatform.dto.request.RegisterClientRequest;
-import com.elearningplatform.dto.response.LoginClientResponse;
-import com.elearningplatform.dto.response.RegisterClientResponse;
+import com.elearningplatform.dto.request.ClientReq.LoginClientRequest;
+import com.elearningplatform.dto.request.ClientReq.RegisterClientRequest;
+import com.elearningplatform.dto.response.ClientRes.LoginClientResponse;
+import com.elearningplatform.dto.response.ClientRes.RegisterClientResponse;
 
 public interface ClientAuthService {
 

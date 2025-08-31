@@ -1,9 +1,9 @@
 package com.elearningplatform.controller;
 
-import com.elearningplatform.dto.request.LoginTeacherRequest;
-import com.elearningplatform.dto.request.RegisterTeacherRequest;
-import com.elearningplatform.dto.response.LoginTeacherResponse;
-import com.elearningplatform.dto.response.RegisterTeacherResponse;
+import com.elearningplatform.dto.request.TeacherReq.LoginTeacherRequest;
+import com.elearningplatform.dto.request.TeacherReq.RegisterTeacherRequest;
+import com.elearningplatform.dto.response.TeacherRes.LoginTeacherResponse;
+import com.elearningplatform.dto.response.TeacherRes.RegisterTeacherResponse;
 import com.elearningplatform.service.AuthImpl.TeacherAuthImpl;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

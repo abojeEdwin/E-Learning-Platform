@@ -1,4 +1,4 @@
-package com.elearningplatform.dto.response;
+package com.elearningplatform.dto.response.AdminRes;
 
 import com.elearningplatform.data.model.Admin;
 import lombok.Getter;

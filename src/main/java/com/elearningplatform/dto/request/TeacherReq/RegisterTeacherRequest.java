@@ -1,4 +1,4 @@
-package com.elearningplatform.dto.request;
+package com.elearningplatform.dto.request.TeacherReq;
 
 
 import com.elearningplatform.data.model.Gender;
@@ -11,7 +11,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RegisterClientRequest {
+public class RegisterTeacherRequest {
 
     @Email
     private String email;
@@ -27,4 +27,5 @@ public class RegisterClientRequest {
 
     @NotNull(message="This field is required")
     private Gender gender;
+
 }

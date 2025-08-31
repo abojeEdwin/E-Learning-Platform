@@ -1,15 +1,16 @@
-package com.elearningplatform.dto.response;
+package com.elearningplatform.dto.response.TeacherRes;
+
 
 import com.elearningplatform.data.model.Teacher;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
-public class RegisterTeacherResponse {
+@Setter
+public class LoginTeacherResponse {
 
     private String message;
-    private Boolean success;
-    private String token;
     private Teacher teacher;
+    private String token;
+    private Boolean success;
 }

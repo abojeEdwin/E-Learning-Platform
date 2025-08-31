@@ -1,4 +1,4 @@
-package com.elearningplatform.dto.request;
+package com.elearningplatform.dto.request.AdminReq;
 
 
 import jakarta.validation.constraints.Email;
@@ -8,10 +8,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class LoginTeacherRequest {
+public class LoginAdminRequest {
 
     @Email
     private String email;
-    @NotNull
+    @NotNull(message = "This field is required")
     private String password;
+
+
 }

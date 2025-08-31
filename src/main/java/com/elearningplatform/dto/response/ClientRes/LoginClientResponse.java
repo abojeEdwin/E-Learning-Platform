@@ -1,4 +1,4 @@
-package com.elearningplatform.dto.response;
+package com.elearningplatform.dto.response.ClientRes;
 
 import com.elearningplatform.data.model.Client;
 import lombok.Getter;
