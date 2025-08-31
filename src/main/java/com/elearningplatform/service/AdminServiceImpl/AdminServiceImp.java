@@ -16,6 +16,7 @@ import com.elearningplatform.exception.SuperAdminNotFoundException;
 import com.elearningplatform.service.AdminService;
 import com.elearningplatform.util.AppUtils;
 import com.elearningplatform.util.JwtUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -27,8 +28,10 @@ import static com.elearningplatform.util.AppUtils.*;
 public class AdminServiceImp implements  AdminService {
 
 
-     private AdminRepository adminRepository;
-     private JwtUtils jwtUtils;
+    @Autowired
+    private AdminRepository adminRepository;
+    @Autowired
+    private JwtUtils jwtUtils;
 
     @Override
     public CreateAdminResponse createAdmin(CreateAdminRequest request) {

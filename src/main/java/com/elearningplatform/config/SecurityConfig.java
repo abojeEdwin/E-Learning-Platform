@@ -29,7 +29,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/admin/create-admin").hasRole("SUPER_ADMIN")
+                        .requestMatchers("/api/v1/admin/create-admin").permitAll()
                         .requestMatchers("/api/v1/admin/login").permitAll()
                         .requestMatchers("/ws/**").permitAll()
                         .requestMatchers("/api/v1/client-auth/**").permitAll()

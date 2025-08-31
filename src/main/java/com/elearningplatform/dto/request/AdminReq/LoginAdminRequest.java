@@ -10,7 +10,9 @@ import lombok.Setter;
 @Setter
 public class LoginAdminRequest {
 
+
     @Email
+    @NotNull(message = "This field is required")
     private String email;
     @NotNull(message = "This field is required")
     private String password;

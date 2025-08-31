@@ -38,10 +38,10 @@ public class ApplicationConfig {
     @Bean
     public UserDetailsService userDetailsService() throws UserNotFoundException {
         return username -> {
-            UserDetails user = clientRepository.findByUsername(username)
+            UserDetails user = adminRepository.findByUsername(username)
                     .orElse(null);
             if(user == null) {
-                UserDetails admin = adminRepository.findByUsername(username)
+                UserDetails admin = clientRepository.findByUsername(username)
                         .orElse(null);
             }
             if (user == null) {
