@@ -83,16 +83,19 @@ public class AdminServiceImp implements  AdminService {
     public ApiResponse suspendClientAccount(SuspendClientAccountRequest request) {
         Optional<Client> foundClient = clientRepository.findById(request.getClientId());
         if(foundClient == null){throw new ClientNotFoundException(CLIENT_NOT_FOUND);}
-
         foundClient.get().setStatus(Status.SUSPENDED);
         Client suspendedClient = clientRepository.save(foundClient.get());
-
         return new ApiResponse(Boolean.TRUE,CLIENT_SUSPENDED_SUCCESSFULLY,suspendedClient);
     }
 
     @Override
     public ApiResponse reactivateClientAccount(Long clientId) {
-        return null;
+
+        Optional<Client> foundClient = clientRepository.findById(clientId);
+        if(foundClient == null){throw new ClientNotFoundException(CLIENT_NOT_FOUND);}
+        foundClient.get().setStatus(Status.ACTIVE);
+        Client suspendedClient = clientRepository.save(foundClient.get());
+        return new ApiResponse(Boolean.TRUE,CLIENT_SUSPENDED_SUCCESSFULLY,suspendedClient);
     }
 
     @Override

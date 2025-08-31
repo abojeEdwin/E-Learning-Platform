@@ -2,6 +2,7 @@ package com.elearningplatform.service.AuthImpl;
 
 
 import com.elearningplatform.data.model.Client;
+import com.elearningplatform.data.model.Status;
 import com.elearningplatform.data.repositories.ClientRepository;
 import com.elearningplatform.data.repositories.TeacherRepository;
 import com.elearningplatform.dto.request.ClientReq.LoginClientRequest;
@@ -48,6 +49,7 @@ public class ClientAuthImpl implements ClientAuthService {
         client.setPassword(hashedPassword);
         client.setGender(request.getGender());
         client.setUsername(request.getUserName());
+        client.setStatus(Status.INACTIVE);
         client.setCreatedAt(LocalDateTime.now());
         client.setUpdatedAt(LocalDateTime.now());
         Client savedClient = clientRepository.save(client);
@@ -69,6 +71,8 @@ public class ClientAuthImpl implements ClientAuthService {
             throw new ClientNotFoundException(CLIENT_NOT_FOUND);}
         if(!AppUtils.verifyPassword(foundClient.getPassword(),request.getPassword())){
             throw new InvalidPasswordException(INVALID_PASSWORD);}
+        foundClient.setStatus(Status.ACTIVE);
+        clientRepository.save(foundClient);
         String token = jwtUtils.generateToken(foundClient);
         LoginClientResponse response = new LoginClientResponse();
         response.setToken(token);
