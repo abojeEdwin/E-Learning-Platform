@@ -97,23 +97,23 @@ public class GlobalExceptionHandler {
                 .body(body);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, String>> handleValidationErrors(MethodArgumentNotValidException ex) {
-        Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getFieldErrors()
-                .forEach(error -> errors.put(error.getField(), error.getDefaultMessage()));
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(errors);
-    }
-
-//
-//    @ExceptionHandler(AccountNotFoundException.class)
-//    public ResponseEntity<Map<String, String>> handleAccountNotFound(AccountNotFoundException ex) {
-//        Map<String, String> body = new HashMap<>();
-//        body.put("message", ex.getMessage());
-//        return ResponseEntity.status(HttpStatus.NOT_FOUND)
-//                .body(body);
+//    @ExceptionHandler(MethodArgumentNotValidException.class)
+//    public ResponseEntity<Map<String, String>> handleValidationErrors(MethodArgumentNotValidException ex) {
+//        Map<String, String> errors = new HashMap<>();
+//        ex.getBindingResult().getFieldErrors()
+//                .forEach(error -> errors.put(error.getField(), error.getDefaultMessage()));
+//        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+//                .body(errors);
 //    }
+
+
+    @ExceptionHandler(IllegalOperationException.class)
+    public ResponseEntity<Map<String, String>> handleAccountNotFound(IllegalOperationException ex) {
+        Map<String, String> body = new HashMap<>();
+        body.put("message", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                .body(body);
+    }
 //
 //    @ExceptionHandler(CashierNotManagedException.class)
 //    public ResponseEntity<Map<String, String>> handleCashierError(CashierNotManagedException ex) {

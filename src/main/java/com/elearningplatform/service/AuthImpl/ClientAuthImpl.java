@@ -65,11 +65,10 @@ public class ClientAuthImpl implements ClientAuthService {
     @Override
     public LoginClientResponse login(LoginClientRequest request) {
         Client foundClient = clientRepository.findByEmail(request.getEmail());
-        if(!AppUtils.verifyPassword(foundClient.getPassword(),request.getPassword())){
-            throw new InvalidPasswordException(INVALID_PASSWORD);}
         if(foundClient == null){
             throw new ClientNotFoundException(CLIENT_NOT_FOUND);}
-
+        if(!AppUtils.verifyPassword(foundClient.getPassword(),request.getPassword())){
+            throw new InvalidPasswordException(INVALID_PASSWORD);}
         String token = jwtUtils.generateToken(foundClient);
         LoginClientResponse response = new LoginClientResponse();
         response.setToken(token);

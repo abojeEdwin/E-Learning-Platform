@@ -10,9 +10,7 @@ import com.elearningplatform.dto.request.ClientReq.SuspendClientAccountRequest;
 import com.elearningplatform.dto.response.AdminRes.CreateAdminResponse;
 import com.elearningplatform.dto.response.AdminRes.LoginAdminResponse;
 import com.elearningplatform.dto.response.ApiResponse;
-import com.elearningplatform.exception.AdminNotFoundException;
-import com.elearningplatform.exception.InvalidPasswordException;
-import com.elearningplatform.exception.SuperAdminNotFoundException;
+import com.elearningplatform.exception.*;
 import com.elearningplatform.service.AdminService;
 import com.elearningplatform.util.AppUtils;
 import com.elearningplatform.util.JwtUtils;
@@ -36,7 +34,7 @@ public class AdminServiceImp implements  AdminService {
     @Override
     public CreateAdminResponse createAdmin(CreateAdminRequest request) {
         Optional<Admin> foundSuperAdmin = adminRepository.findById(request.getSuperAdminId());
-        if(foundSuperAdmin.isEmpty()){throw new SuperAdminNotFoundException(SUPER_ADMIN_NOT_FOUND);}
+        validateAdmin(request, foundSuperAdmin);
 
         String hashedPassword = AppUtils.hashPassword(request.getPassword());
         Admin newAdmin = new Admin();
@@ -51,6 +49,12 @@ public class AdminServiceImp implements  AdminService {
         response.setAdmin(savedAdmin);
         return response;
 
+    }
+
+    private void validateAdmin(CreateAdminRequest request, Optional<Admin> foundSuperAdmin) {
+        if(foundSuperAdmin.isEmpty()){throw new SuperAdminNotFoundException(SUPER_ADMIN_NOT_FOUND);}
+        if(foundSuperAdmin.get().getRole() != Roles.SUPER_ADMIN){throw new IllegalOperationException(ILLEGAL_OPERATION);}
+        if(adminRepository.existsByEmail(request.getEmail())){throw new AdminAlreadyExistException(ADMIN_ALREADY_EXIST);}
     }
 
     @Override

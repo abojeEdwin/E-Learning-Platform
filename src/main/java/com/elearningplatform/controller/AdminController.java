@@ -24,7 +24,7 @@ public class AdminController {
     @Autowired
     private final AdminServiceImp adminServiceImp;
 
-//    @PreAuthorize("hasRole('SUPER_ADMIN')")
+    @PreAuthorize("hasRole('SUPER_ADMIN')")
     @PostMapping("/create-admin")
     public ResponseEntity<CreateAdminResponse> createAdmin(@Valid @RequestBody CreateAdminRequest request){
         return ResponseEntity.ok(adminServiceImp.createAdmin(request));

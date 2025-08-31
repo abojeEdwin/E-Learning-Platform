@@ -42,8 +42,7 @@ public class ApplicationConfig {
                     .orElse(null);
             if(user == null) {
                 UserDetails admin = clientRepository.findByUsername(username)
-                        .orElse(null);
-            }
+                        .orElse(null);}
             if (user == null) {
                UserDetails teacher = teacherRepository.findByUsername(username)
                        .orElseThrow(() -> new UserNotFoundException(USER_NOT_FOUND));
