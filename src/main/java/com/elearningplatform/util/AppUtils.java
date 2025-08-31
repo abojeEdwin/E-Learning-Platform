@@ -20,6 +20,7 @@ public class AppUtils {
     public static final String ADMIN_NOT_FOUND = "Admin not found, please check your credentials";
     public static final String ADMIN_ALREADY_EXIST =  "Admin already exist, please check your credentials";
     public static final String ILLEGAL_OPERATION = "Illegal operation";
+    public static final String CLIENT_SUSPENDED_SUCCESSFULLY = "Client suspended successfully";
 
 
 

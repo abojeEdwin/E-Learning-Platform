@@ -3,8 +3,10 @@ package com.elearningplatform.controller;
 
 import com.elearningplatform.dto.request.AdminReq.CreateAdminRequest;
 import com.elearningplatform.dto.request.AdminReq.LoginAdminRequest;
+import com.elearningplatform.dto.request.ClientReq.SuspendClientAccountRequest;
 import com.elearningplatform.dto.response.AdminRes.CreateAdminResponse;
 import com.elearningplatform.dto.response.AdminRes.LoginAdminResponse;
+import com.elearningplatform.dto.response.ApiResponse;
 import com.elearningplatform.service.AdminServiceImpl.AdminServiceImp;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -33,6 +35,11 @@ public class AdminController {
     @PostMapping("/login")
     public ResponseEntity<LoginAdminResponse> login(@Valid @RequestBody LoginAdminRequest request){
         return ResponseEntity.ok(adminServiceImp.login(request));
+    }
+
+    @PostMapping("/suspend-client")
+    public ResponseEntity<ApiResponse> suspendClient(@Valid @RequestBody SuspendClientAccountRequest request){
+        return ResponseEntity.ok(adminServiceImp.suspendClientAccount(request));
     }
 
 

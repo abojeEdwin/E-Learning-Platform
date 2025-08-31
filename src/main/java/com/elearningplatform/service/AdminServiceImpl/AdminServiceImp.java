@@ -1,8 +1,11 @@
 package com.elearningplatform.service.AdminServiceImpl;
 
 import com.elearningplatform.data.model.Admin;
+import com.elearningplatform.data.model.Client;
 import com.elearningplatform.data.model.Roles;
+import com.elearningplatform.data.model.Status;
 import com.elearningplatform.data.repositories.AdminRepository;
+import com.elearningplatform.data.repositories.ClientRepository;
 import com.elearningplatform.dto.request.AdminReq.CreateAdminRequest;
 import com.elearningplatform.dto.request.AdminReq.LoginAdminRequest;
 import com.elearningplatform.dto.request.AdminReq.SuspendTeacherAccountRequest;
@@ -30,9 +33,12 @@ public class AdminServiceImp implements  AdminService {
     private AdminRepository adminRepository;
     @Autowired
     private JwtUtils jwtUtils;
+    @Autowired
+    private ClientRepository clientRepository;
 
     @Override
     public CreateAdminResponse createAdmin(CreateAdminRequest request) {
+
         Optional<Admin> foundSuperAdmin = adminRepository.findById(request.getSuperAdminId());
         validateAdmin(request, foundSuperAdmin);
 
@@ -75,7 +81,13 @@ public class AdminServiceImp implements  AdminService {
 
     @Override
     public ApiResponse suspendClientAccount(SuspendClientAccountRequest request) {
-        return null;
+        Optional<Client> foundClient = clientRepository.findById(request.getClientId());
+        if(foundClient == null){throw new ClientNotFoundException(CLIENT_NOT_FOUND);}
+
+        foundClient.get().setStatus(Status.SUSPENDED);
+        Client suspendedClient = clientRepository.save(foundClient.get());
+
+        return new ApiResponse(Boolean.TRUE,CLIENT_SUSPENDED_SUCCESSFULLY,suspendedClient);
     }
 
     @Override
