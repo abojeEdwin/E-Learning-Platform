@@ -14,8 +14,8 @@ public interface AdminService {
     LoginAdminResponse login(LoginAdminRequest request);
     ApiResponse suspendClientAccount(SuspendClientAccountRequest request);
     ApiResponse reactivateClientAccount(Long clientId);
-    ApiResponse deleteClientAccount(Long clientId);
+    void deleteClientAccount(Long clientId);
     ApiResponse suspendTeacherAccount(SuspendTeacherAccountRequest request);
     ApiResponse reactivateTeacherAccount(Long teacherId);
-    ApiResponse deleteTeacherAccount(Long teacherId);
+    void deleteTeacherAccount(Long teacherId);
 }

@@ -1,11 +1,9 @@
 package com.elearningplatform.service.AdminServiceImpl;
 
-import com.elearningplatform.data.model.Admin;
-import com.elearningplatform.data.model.Client;
-import com.elearningplatform.data.model.Roles;
-import com.elearningplatform.data.model.Status;
+import com.elearningplatform.data.model.*;
 import com.elearningplatform.data.repositories.AdminRepository;
 import com.elearningplatform.data.repositories.ClientRepository;
+import com.elearningplatform.data.repositories.TeacherRepository;
 import com.elearningplatform.dto.request.AdminReq.CreateAdminRequest;
 import com.elearningplatform.dto.request.AdminReq.LoginAdminRequest;
 import com.elearningplatform.dto.request.AdminReq.SuspendTeacherAccountRequest;
@@ -35,6 +33,8 @@ public class AdminServiceImp implements  AdminService {
     private JwtUtils jwtUtils;
     @Autowired
     private ClientRepository clientRepository;
+    @Autowired
+    private TeacherRepository teacherRepository;
 
     @Override
     public CreateAdminResponse createAdmin(CreateAdminRequest request) {
@@ -99,13 +99,21 @@ public class AdminServiceImp implements  AdminService {
     }
 
     @Override
-    public ApiResponse deleteClientAccount(Long clientId) {
-        return null;
+    public void deleteClientAccount(Long clientId) {
+        Optional<Client> foundClient = clientRepository.findById(clientId);
+        if(foundClient == null){throw new ClientNotFoundException(CLIENT_NOT_FOUND);}
+        clientRepository.deleteById(clientId);
     }
 
     @Override
     public ApiResponse suspendTeacherAccount(SuspendTeacherAccountRequest request) {
-        return null;
+
+        Optional<Teacher> foundTeacher = teacherRepository.findById(request.getTeacherId());
+        if(foundTeacher == null){throw new TeacherNotFoundException(TEACHER_NOT_FOUND);}
+        foundTeacher.get().setStatus(Status.SUSPENDED);
+        Teacher suspendedTeacher = teacherRepository.save(foundTeacher.get());
+        return new ApiResponse(Boolean.TRUE,CLIENT_SUSPENDED_SUCCESSFULLY,suspendedTeacher);
+
     }
 
     @Override
@@ -114,7 +122,7 @@ public class AdminServiceImp implements  AdminService {
     }
 
     @Override
-    public ApiResponse deleteTeacherAccount(Long teacherId) {
-        return null;
+    public void deleteTeacherAccount(Long teacherId) {
+
     }
 }
