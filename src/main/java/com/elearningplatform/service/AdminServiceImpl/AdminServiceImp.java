@@ -118,11 +118,19 @@ public class AdminServiceImp implements  AdminService {
 
     @Override
     public ApiResponse reactivateTeacherAccount(Long teacherId) {
-        return null;
+
+        Optional<Teacher> foundTeacher = teacherRepository.findById(teacherId);
+        if(foundTeacher == null){throw new TeacherNotFoundException(TEACHER_NOT_FOUND);}
+        foundTeacher.get().setStatus(Status.ACTIVE);
+        Teacher suspendedTeacher = teacherRepository.save(foundTeacher.get());
+        return new ApiResponse(Boolean.TRUE,CLIENT_SUSPENDED_SUCCESSFULLY,suspendedTeacher);
+
     }
 
     @Override
     public void deleteTeacherAccount(Long teacherId) {
-
+        Optional<Teacher> foundTeacher = teacherRepository.findById(teacherId);
+        if(foundTeacher == null){throw new TeacherNotFoundException(TEACHER_NOT_FOUND);}
+        teacherRepository.deleteById(teacherId);
     }
 }
