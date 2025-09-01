@@ -4,6 +4,7 @@ package com.elearningplatform.controller;
 import com.elearningplatform.dto.request.AdminReq.CreateAdminRequest;
 import com.elearningplatform.dto.request.AdminReq.LoginAdminRequest;
 import com.elearningplatform.dto.request.AdminReq.ReactivateClientAccountRequest;
+import com.elearningplatform.dto.request.AdminReq.SuspendTeacherAccountRequest;
 import com.elearningplatform.dto.request.ClientReq.SuspendClientAccountRequest;
 import com.elearningplatform.dto.response.AdminRes.CreateAdminResponse;
 import com.elearningplatform.dto.response.AdminRes.LoginAdminResponse;
@@ -45,5 +46,23 @@ public class AdminController {
         return ResponseEntity.ok(adminServiceImp.reactivateClientAccount(id));
     }
 
+    @DeleteMapping("/delete-client")
+    public void deleteClient(@Valid @RequestParam Long id){
+        adminServiceImp.deleteClientAccount(id);
+    }
+
+    @PostMapping("/suspend-teacher")
+    public ResponseEntity<ApiResponse> suspendTeacher(@Valid @RequestBody SuspendTeacherAccountRequest request){
+        return ResponseEntity.ok(adminServiceImp.suspendTeacherAccount(request));
+    }
+
+    @PostMapping("/reactivate-teacher")
+    public ResponseEntity<ApiResponse> reactivateTeacher(@Valid @RequestParam Long id){
+        return ResponseEntity.ok(adminServiceImp.reactivateTeacherAccount(id));
+    }
+    @DeleteMapping("/delete-teacher")
+    public void deleteTeacher(@Valid @RequestParam Long id){
+        adminServiceImp.deleteTeacherAccount(id);
+    }
 
 }

@@ -90,7 +90,6 @@ public class AdminServiceImp implements  AdminService {
 
     @Override
     public ApiResponse reactivateClientAccount(Long clientId) {
-
         Optional<Client> foundClient = clientRepository.findById(clientId);
         if(foundClient == null){throw new ClientNotFoundException(CLIENT_NOT_FOUND);}
         foundClient.get().setStatus(Status.ACTIVE);
@@ -107,18 +106,15 @@ public class AdminServiceImp implements  AdminService {
 
     @Override
     public ApiResponse suspendTeacherAccount(SuspendTeacherAccountRequest request) {
-
         Optional<Teacher> foundTeacher = teacherRepository.findById(request.getTeacherId());
         if(foundTeacher == null){throw new TeacherNotFoundException(TEACHER_NOT_FOUND);}
         foundTeacher.get().setStatus(Status.SUSPENDED);
         Teacher suspendedTeacher = teacherRepository.save(foundTeacher.get());
         return new ApiResponse(Boolean.TRUE,CLIENT_SUSPENDED_SUCCESSFULLY,suspendedTeacher);
-
     }
 
     @Override
     public ApiResponse reactivateTeacherAccount(Long teacherId) {
-
         Optional<Teacher> foundTeacher = teacherRepository.findById(teacherId);
         if(foundTeacher == null){throw new TeacherNotFoundException(TEACHER_NOT_FOUND);}
         foundTeacher.get().setStatus(Status.ACTIVE);

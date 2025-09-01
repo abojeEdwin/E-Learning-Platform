@@ -29,12 +29,19 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/admin/create-admin").hasAnyAuthority("SUPER_ADMIN")
-                        .requestMatchers("/api/v1/admin/suspend-client").hasAnyAuthority("SUPER_ADMIN","ADMIN")
-                        .requestMatchers("/api/v1/admin/login").permitAll()
-                        .requestMatchers("/ws/**").permitAll()
                         .requestMatchers("/api/v1/client-auth/**").permitAll()
                         .requestMatchers("/api/v1/teacher-auth/**").permitAll()
+                        .requestMatchers("/api/v1/admin/login").permitAll()
+                        .requestMatchers("/api/v1/admin/create-admin").hasAnyAuthority("SUPER_ADMIN")
+                        .requestMatchers(
+                                "/api/v1/admin/suspend-client",
+                                "api/v1/admin/delete-client",
+                                "api/v1/admin/reactivate-client",
+                                "api/v1/admin/delete-client",
+                                "api/v1/admin/suspend-teacher",
+                                "api/v1/admin/reactivate-teacher",
+                                "api/v1/admin/delete-teacher").hasAnyAuthority("SUPER_ADMIN","ADMIN")
+                        .requestMatchers("/ws/**").permitAll()
                         .anyRequest().hasAnyRole("/")
                 )
                 .authenticationProvider(authenticationProvider)
