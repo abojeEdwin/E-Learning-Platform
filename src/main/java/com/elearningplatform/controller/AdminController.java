@@ -3,6 +3,7 @@ package com.elearningplatform.controller;
 
 import com.elearningplatform.dto.request.AdminReq.CreateAdminRequest;
 import com.elearningplatform.dto.request.AdminReq.LoginAdminRequest;
+import com.elearningplatform.dto.request.AdminReq.ReactivateClientAccountRequest;
 import com.elearningplatform.dto.request.ClientReq.SuspendClientAccountRequest;
 import com.elearningplatform.dto.response.AdminRes.CreateAdminResponse;
 import com.elearningplatform.dto.response.AdminRes.LoginAdminResponse;
@@ -13,10 +14,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/admin")
@@ -40,6 +38,11 @@ public class AdminController {
     @PostMapping("/suspend-client")
     public ResponseEntity<ApiResponse> suspendClient(@Valid @RequestBody SuspendClientAccountRequest request){
         return ResponseEntity.ok(adminServiceImp.suspendClientAccount(request));
+    }
+
+    @PostMapping("/reactivate-client")
+    public ResponseEntity<ApiResponse> reactivateClient(@Valid @RequestParam Long id){
+        return ResponseEntity.ok(adminServiceImp.reactivateClientAccount(id));
     }
 
 
