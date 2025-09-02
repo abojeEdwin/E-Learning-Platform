@@ -21,6 +21,7 @@ public class SecurityConfig {
 
 
     private final JwtAuthFilter jwtFilter;
+    private final RateLimiterFilter rateLimiterFilter;
     private final AuthenticationProvider authenticationProvider;
 
     @Bean
@@ -32,6 +33,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/client-auth/**").permitAll()
                         .requestMatchers("/api/v1/teacher-auth/**").permitAll()
                         .requestMatchers("/api/v1/admin/login").permitAll()
+                        .requestMatchers("api/v1/chat/sendMessage").permitAll()
                         .requestMatchers("/api/v1/admin/create-admin").hasAnyAuthority("SUPER_ADMIN")
                         .requestMatchers(
                                 "/api/v1/admin/suspend-client",
@@ -42,12 +44,13 @@ public class SecurityConfig {
                                 "api/v1/admin/reactivate-teacher",
                                 "api/v1/admin/delete-teacher").hasAnyAuthority("SUPER_ADMIN","ADMIN")
                         .requestMatchers("/ws/**").permitAll()
-                        .anyRequest().hasAnyRole("/")
+                        .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider)
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(rateLimiterFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtFilter,UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 

@@ -23,8 +23,10 @@ public class Chat {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String message;
 
-    private String receiver;
-    private String sender;
+    private Long receiver;
+    private Long sender;
+
+    private MessageStatus status;
 
     private LocalDateTime timestamp;
 

@@ -1,11 +1,17 @@
 package com.elearningplatform.controller;
 
 
+import com.elearningplatform.data.model.Client;
+import com.elearningplatform.data.model.Roles;
+import com.elearningplatform.data.repositories.ClientRepository;
 import com.elearningplatform.dto.request.ClientReq.LoginClientRequest;
 import com.elearningplatform.dto.request.ClientReq.RegisterClientRequest;
 import com.elearningplatform.dto.response.ClientRes.LoginClientResponse;
 import com.elearningplatform.dto.response.ClientRes.RegisterClientResponse;
 import com.elearningplatform.service.AuthImpl.ClientAuthImpl;
+import com.elearningplatform.util.RateLimiter;
+import io.github.bucket4j.Bucket;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +25,11 @@ public class ClientController {
 
     @Autowired
     private ClientAuthImpl clientAuthService;
+    @Autowired
+    private ClientRepository clientRepository;
+
+    @Autowired
+    private final RateLimiter rateLimiter;
 
     @PostMapping("/register")
     public ResponseEntity<RegisterClientResponse> register(@RequestBody @Valid RegisterClientRequest request){
@@ -26,7 +37,16 @@ public class ClientController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginClientResponse> login (@RequestBody @Valid LoginClientRequest request){
-        return ResponseEntity.ok(clientAuthService.login(request));
+    public ResponseEntity<LoginClientResponse> login (@RequestBody @Valid LoginClientRequest loginRequest, HttpServletRequest request){
+
+            String ip = request.getRemoteAddr();
+            System.out.println("Client IP: " + ip);
+            Bucket bucket = rateLimiter.resolveBucket(ip, Roles.CLIENT.toString());
+
+            if(!bucket.tryConsume(1)){
+                return ResponseEntity.badRequest().build();
+            }
+            return ResponseEntity.ok(clientAuthService.login(loginRequest));
+
     }
 }
