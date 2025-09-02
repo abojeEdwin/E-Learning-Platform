@@ -1,6 +1,5 @@
 package com.elearningplatform.dto.request.AdminReq;
 
-import com.elearningplatform.data.model.Roles;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;

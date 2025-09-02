@@ -1,8 +1,8 @@
 package com.elearningplatform.dto.request.TeacherReq;
 
 
-import com.elearningplatform.data.model.Gender;
-import com.elearningplatform.data.model.Roles;
+import com.elearningplatform.data.enums.Gender;
+import com.elearningplatform.data.enums.Roles;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;

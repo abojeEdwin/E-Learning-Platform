@@ -1,4 +1,4 @@
-package com.elearningplatform.service;
+package com.elearningplatform.service.ClientServices;
 
 import com.elearningplatform.dto.request.ClientReq.LoginClientRequest;
 import com.elearningplatform.dto.request.ClientReq.RegisterClientRequest;

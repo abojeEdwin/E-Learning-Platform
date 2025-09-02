@@ -2,7 +2,7 @@ package com.elearningplatform.service.AuthImpl;
 
 
 import com.elearningplatform.data.model.Client;
-import com.elearningplatform.data.model.Status;
+import com.elearningplatform.data.enums.Status;
 import com.elearningplatform.data.repositories.ClientRepository;
 import com.elearningplatform.data.repositories.TeacherRepository;
 import com.elearningplatform.dto.request.ClientReq.LoginClientRequest;
@@ -13,7 +13,7 @@ import com.elearningplatform.exception.ClientNotFoundException;
 import com.elearningplatform.exception.EmailAlreadyExistException;
 import com.elearningplatform.exception.InvalidPasswordException;
 import com.elearningplatform.exception.UsernameAlreadyExistException;
-import com.elearningplatform.service.ClientAuthService;
+import com.elearningplatform.service.ClientServices.ClientAuthService;
 import com.elearningplatform.util.AppUtils;
 import com.elearningplatform.util.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.elearningplatform.service;
+package com.elearningplatform.service.AdminServices;
 
 import com.elearningplatform.dto.request.AdminReq.CreateAdminRequest;
 import com.elearningplatform.dto.request.AdminReq.LoginAdminRequest;

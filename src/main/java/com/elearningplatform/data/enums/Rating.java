@@ -1,4 +1,4 @@
-package com.elearningplatform.data.model;
+package com.elearningplatform.data.enums;
 
 public enum Rating {
     ONE,

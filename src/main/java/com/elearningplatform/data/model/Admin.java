@@ -1,5 +1,6 @@
 package com.elearningplatform.data.model;
 
+import com.elearningplatform.data.enums.Roles;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;

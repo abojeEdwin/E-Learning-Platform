@@ -1,4 +1,4 @@
-package com.elearningplatform.service;
+package com.elearningplatform.service.TeacherServices;
 
 import com.elearningplatform.dto.request.TeacherReq.LoginTeacherRequest;
 import com.elearningplatform.dto.request.TeacherReq.RegisterTeacherRequest;

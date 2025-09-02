@@ -1,4 +1,4 @@
-package com.elearningplatform.service;
+package com.elearningplatform.service.ClientServices;
 
 import com.elearningplatform.dto.response.ApiResponse;
 

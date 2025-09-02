@@ -1,5 +1,6 @@
 package com.elearningplatform.data.model;
 
+import com.elearningplatform.data.enums.MessageStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

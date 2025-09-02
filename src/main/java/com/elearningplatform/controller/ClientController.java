@@ -1,8 +1,7 @@
 package com.elearningplatform.controller;
 
 
-import com.elearningplatform.data.model.Client;
-import com.elearningplatform.data.model.Roles;
+import com.elearningplatform.data.enums.Roles;
 import com.elearningplatform.data.repositories.ClientRepository;
 import com.elearningplatform.dto.request.ClientReq.LoginClientRequest;
 import com.elearningplatform.dto.request.ClientReq.RegisterClientRequest;

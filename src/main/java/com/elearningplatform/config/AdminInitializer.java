@@ -1,7 +1,7 @@
 package com.elearningplatform.config;
 
 import com.elearningplatform.data.model.Admin;
-import com.elearningplatform.data.model.Roles;
+import com.elearningplatform.data.enums.Roles;
 import com.elearningplatform.data.repositories.AdminRepository;
 
 import lombok.RequiredArgsConstructor;

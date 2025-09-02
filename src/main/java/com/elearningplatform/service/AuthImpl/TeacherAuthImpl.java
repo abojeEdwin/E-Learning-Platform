@@ -10,7 +10,7 @@ import com.elearningplatform.dto.request.TeacherReq.RegisterTeacherRequest;
 import com.elearningplatform.dto.response.TeacherRes.LoginTeacherResponse;
 import com.elearningplatform.dto.response.TeacherRes.RegisterTeacherResponse;
 import com.elearningplatform.exception.*;
-import com.elearningplatform.service.TeacherAuthService;
+import com.elearningplatform.service.TeacherServices.TeacherAuthService;
 import com.elearningplatform.util.AppUtils;
 import com.elearningplatform.util.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
