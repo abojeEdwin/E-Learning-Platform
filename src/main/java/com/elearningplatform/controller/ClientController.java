@@ -1,34 +1,25 @@
 package com.elearningplatform.controller;
 
 
-import com.elearningplatform.data.enums.Roles;
-import com.elearningplatform.data.repositories.ClientRepository;
 import com.elearningplatform.dto.request.ClientReq.LoginClientRequest;
 import com.elearningplatform.dto.request.ClientReq.RegisterClientRequest;
 import com.elearningplatform.dto.response.ClientRes.LoginClientResponse;
 import com.elearningplatform.dto.response.ClientRes.RegisterClientResponse;
-import com.elearningplatform.service.AuthImpl.ClientAuthImpl;
-import com.elearningplatform.util.RateLimiter;
-import io.github.bucket4j.Bucket;
+import com.elearningplatform.service.AuthImpl.ClientAuthImpl;;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@AllArgsConstructor
+@Slf4j
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/client-auth")
 public class ClientController {
 
-    @Autowired
-    private ClientAuthImpl clientAuthService;
-    @Autowired
-    private ClientRepository clientRepository;
-
-    @Autowired
-    private final RateLimiter rateLimiter;
+    private final ClientAuthImpl clientAuthService;
 
     @PostMapping("/register")
     public ResponseEntity<RegisterClientResponse> register(@RequestBody @Valid RegisterClientRequest request){
@@ -37,15 +28,6 @@ public class ClientController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginClientResponse> login (@RequestBody @Valid LoginClientRequest loginRequest, HttpServletRequest request){
-
-            String ip = request.getRemoteAddr();
-            System.out.println("Client IP: " + ip);
-            Bucket bucket = rateLimiter.resolveBucket(ip, Roles.CLIENT.toString());
-
-            if(!bucket.tryConsume(1)){
-                return ResponseEntity.badRequest().build();
-            }
-            return ResponseEntity.ok(clientAuthService.login(loginRequest));
-
+        return ResponseEntity.ok(clientAuthService.login(loginRequest));
     }
 }

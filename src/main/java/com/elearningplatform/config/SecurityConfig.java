@@ -21,7 +21,6 @@ public class SecurityConfig {
 
 
     private final JwtAuthFilter jwtFilter;
-    private final RateLimiterFilter rateLimiterFilter;
     private final AuthenticationProvider authenticationProvider;
 
     @Bean
@@ -49,7 +48,6 @@ public class SecurityConfig {
                 .authenticationProvider(authenticationProvider)
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(rateLimiterFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(jwtFilter,UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
