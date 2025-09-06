@@ -15,6 +15,7 @@ import com.elearningplatform.exception.PostNotFoundException;
 import com.elearningplatform.exception.UserNotFoundException;
 import com.elearningplatform.service.PostService.PostService;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
 
 
 import java.time.LocalDateTime;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 
 import static com.elearningplatform.util.AppUtils.*;
 
+@Service
 public class PostServiceImp implements PostService {
 
     private PostRepository postRepository;

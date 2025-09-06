@@ -3,7 +3,7 @@ package com.elearningplatform.controller;
 
 import com.elearningplatform.dto.request.PostReq.CreatePostRequest;
 import com.elearningplatform.dto.response.PostRes.CreatePostResponse;
-import com.elearningplatform.service.PostService.PostService;
+import com.elearningplatform.service.PostServiceImpl.PostServiceImp;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +20,9 @@ import static com.elearningplatform.util.AppUtils.POST_DELETED_SUCCESSFULLY;
 @AllArgsConstructor
 public class PostController {
 
+
     @Autowired
-    private PostService postService;
+    private PostServiceImp postService;
 
     @PostMapping("create-post")
     public ResponseEntity<CreatePostResponse> createPost(@Valid @RequestBody CreatePostRequest request) {
