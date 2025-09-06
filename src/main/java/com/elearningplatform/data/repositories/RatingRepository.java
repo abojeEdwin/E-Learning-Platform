@@ -1,5 +1,6 @@
 package com.elearningplatform.data.repositories;
 
+import com.elearningplatform.data.enums.Rating;
 import com.elearningplatform.data.model.RatingEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -16,5 +17,5 @@ public interface RatingRepository extends JpaRepository <RatingEntity, Long>{
     Optional<Double> findAverageRatingByTeacherId(Long teacherId);
     Long countByTeacherId(Long teacherId);
     boolean existsByTeacherIdAndClientId(Long teacherId, Long clientId);
-
+    Long countByTeacherIdAndRating(Long teacherId, Rating rating);
 }

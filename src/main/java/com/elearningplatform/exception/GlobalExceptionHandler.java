@@ -60,7 +60,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleInvalidLoginCredentials(SuperAdminNotFoundException ex) {
         Map<String, String> body = new HashMap<>();
         body.put("message", ex.getMessage());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(body);
     }
 
@@ -68,7 +68,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleInvalidPassword(InvalidPasswordException ex) {
         Map<String, String> body = new HashMap<>();
         body.put("message", ex.getMessage());
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(body);
     }
 
@@ -84,7 +84,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleUserNameAlreadyExist(UsernameAlreadyExistException ex) {
         Map<String, String> body = new HashMap<>();
         body.put("message", ex.getMessage());
-        return ResponseEntity.status(HttpStatus.CONFLICT)
+        return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT)
                 .body(body);
     }
 
@@ -119,7 +119,15 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleCashierError(PostNotFoundException ex) {
         Map<String, String> body = new HashMap<>();
         body.put("message", ex.getMessage());
-        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(body);
+    }
+
+    @ExceptionHandler(RatingNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleAccountNotFound(RatingNotFoundException ex) {
+        Map<String, String> body = new HashMap<>();
+        body.put("message", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(body);
     }
 

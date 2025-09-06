@@ -24,6 +24,9 @@ public class AppUtils {
     public static final String POST_NOT_FOUND = "Post not found";
     public static final String POST_DELETED_SUCCESSFULLY = "Post deleted successfully";
     public static final String NOT_AUTHORIZED = "You are not authorized to perform this operation";
+    public static final String TEACHER_ALREADY_RATED = "Client already rated this teacher";
+    public static final String RATING_NOT_FOUND = "Rating not found";
+
 
 
 
