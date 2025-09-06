@@ -15,7 +15,8 @@ public class DailyCoService {
 
     private final WebClient webClient;
     private final String apiKey;
-    private final String baseUrl = "https://api.daily.co/v1";
+    @Value("${dailyco.base-url}")
+    private String baseUrl;
 
     public DailyCoService(@Value("${dailyco.api-key}") String apiKey) {
         this.apiKey = apiKey;
