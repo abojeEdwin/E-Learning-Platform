@@ -1,20 +1,20 @@
-package com.elearningplatform.service.ClientServices;
+package com.elearningplatform.service.TeacherServices;
 
-import com.elearningplatform.data.model.Client;
-import com.elearningplatform.dto.request.ClientReq.RateTeacherRequest;
-import com.elearningplatform.dto.request.ClientReq.UpdateClientProfileRequest;
+
+import com.elearningplatform.data.model.Teacher;
 import com.elearningplatform.dto.request.PostReq.CreatePostRequest;
+import com.elearningplatform.dto.request.TeacherReq.UpdateTeacherProfileRequest;
 import com.elearningplatform.dto.response.ApiResponse;
-import com.elearningplatform.dto.response.ClientRes.RatingResponse;
 import com.elearningplatform.dto.response.PostRes.CreatePostResponse;
+import org.springframework.stereotype.Service;
 
-public interface ClientService {
+@Service
+public interface TeacherService {
 
-    ApiResponse updateProfile (UpdateClientProfileRequest request);
+    ApiResponse updateProfile(UpdateTeacherProfileRequest request);
     CreatePostResponse createPost(CreatePostRequest request);
     void deletePost(Long id);
-    Client viewProfile(Long id);
-    RatingResponse rateTeacher(RateTeacherRequest request);
+    Teacher viewProfile(Long id);
     void videoCall(Long id);
     void receiveNotification(Long id);
     void sendReminder(Long id);

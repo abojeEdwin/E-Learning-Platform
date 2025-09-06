@@ -7,4 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class DailyMeetingTokenResponse {
+
+    private String token;
+    private String room_name;
+
 }

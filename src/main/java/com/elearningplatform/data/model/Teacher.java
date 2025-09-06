@@ -47,6 +47,12 @@ public class Teacher implements UserDetails{
     private Gender gender;
 
     @Column(nullable = true)
+    private String address;
+
+    @Column(nullable = true)
+    private String phone;
+
+    @Column(nullable = true)
     private String location;
 
     @Column(nullable = true)

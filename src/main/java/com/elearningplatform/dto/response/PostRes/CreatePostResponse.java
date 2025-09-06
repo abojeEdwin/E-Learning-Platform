@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Setter
 @Builder
 public class CreatePostResponse {
+
     private Long id;
     private String title;
     private String content;

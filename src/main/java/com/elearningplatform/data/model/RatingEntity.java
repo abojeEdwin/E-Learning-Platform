@@ -39,6 +39,5 @@ public class RatingEntity {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
-
 }
 
