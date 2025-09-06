@@ -14,8 +14,17 @@ import lombok.Setter;
 @NoArgsConstructor
 public class RateTeacherRequest {
 
-    @NotNull(message="This field is required")
-    private String teacherId;
-    @NotNull(message="This field is required")
+    @NotNull(message = "This field is required")
     private Rating rating;
+
+    @NotNull
+    private Long teacherId;
+
+    @NotNull
+    private Long clientId;
+
+    @NotNull(message = "This field is required")
+    private String comment;
+
+
 }

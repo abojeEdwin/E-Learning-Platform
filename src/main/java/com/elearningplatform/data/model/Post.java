@@ -1,7 +1,7 @@
 package com.elearningplatform.data.model;
 
 
-import jakarta.annotation.Nullable;
+import com.elearningplatform.data.enums.Roles;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @Table(name="post")
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Post {
 
     @Id
@@ -27,6 +28,8 @@ public class Post {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
+    private String imageUrl;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
@@ -35,8 +38,12 @@ public class Post {
     @JoinColumn(name = "client_id")
     private Client client;
 
+    @Enumerated(EnumType.STRING)
+    private Roles role;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
 
 
 

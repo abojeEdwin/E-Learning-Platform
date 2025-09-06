@@ -1,18 +1,22 @@
 package com.elearningplatform.dto.response.PostRes;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class CreatePostResponse {
-
-    private String postId;
-    private String message;
+    private Long id;
+    private String title;
+    private String content;
+    private String imageUrl;
+    private String createdBy;
+    private String role;
+    private LocalDateTime createdAt;
 
 }
 
