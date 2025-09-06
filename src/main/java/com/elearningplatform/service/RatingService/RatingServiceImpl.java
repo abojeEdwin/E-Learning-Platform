@@ -9,6 +9,7 @@ import com.elearningplatform.data.repositories.RatingRepository;
 import com.elearningplatform.data.repositories.TeacherRepository;
 import com.elearningplatform.dto.request.RatingReq.RateTeacherRequest;
 import com.elearningplatform.dto.request.RatingReq.UpdateTeacherRequest;
+import com.elearningplatform.dto.response.RatingRes.RateTeacherResponse;
 import com.elearningplatform.dto.response.RatingRes.RatingSummary;
 import com.elearningplatform.exception.RatingNotFoundException;
 import lombok.AllArgsConstructor;
@@ -40,7 +41,7 @@ public class RatingServiceImpl implements RatingService{
 
 
     @Override
-    public RatingEntity rateTeacher(RateTeacherRequest request) {
+    public RateTeacherResponse rateTeacher(RateTeacherRequest request) {
 
         Optional<Teacher> teacher = teacherRepository.findById(request.getTeacherId());
         Optional<Client> client = clientRepository.findById(request.getClientId());
@@ -48,23 +49,36 @@ public class RatingServiceImpl implements RatingService{
         if (ratingRepository.existsByTeacherIdAndClientId(request.getTeacherId(), request.getClientId())) {
             throw new IllegalStateException(TEACHER_ALREADY_RATED);}
 
-        Long id = null;
         RatingEntity ratingEntity = new RatingEntity();
         ratingEntity.setRating(request.getRating());
         ratingEntity.setTeacher(teacher.get());
         ratingEntity.setClient(client.get());
         ratingEntity.setComment(request.getComment());
         ratingEntity.setCreatedAt(LocalDateTime.now());
-        return ratingRepository.save(ratingEntity);
+        RatingEntity savedEntity = ratingRepository.save(ratingEntity);
+        return new RateTeacherResponse(
+                savedEntity.getId(),
+                savedEntity.getRating(),
+                savedEntity.getComment(),
+                savedEntity.getCreatedAt(),
+                savedEntity.getClient().getId(),
+                savedEntity.getTeacher().getId());
     }
 
     @Override
-    public RatingEntity updateRating(UpdateTeacherRequest request) {
+    public RateTeacherResponse updateRating(UpdateTeacherRequest request) {
         RatingEntity rating = ratingRepository.findById(request.getRatingId())
                 .orElseThrow(() -> new RatingNotFoundException(RATING_NOT_FOUND));
         rating.setRating(request.getNewRating());
         rating.setComment(request.getNewComment());
-        return ratingRepository.save(rating);
+        ratingRepository.save(rating);
+        return new RateTeacherResponse(
+                rating.getId(),
+                rating.getRating(),
+                rating.getComment(),
+                rating.getCreatedAt(),
+                rating.getClient().getId(),
+                rating.getTeacher().getId());
     }
 
     @Override

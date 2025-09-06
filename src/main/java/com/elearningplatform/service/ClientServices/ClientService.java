@@ -5,7 +5,6 @@ import com.elearningplatform.dto.request.ClientReq.RateTeacherRequest;
 import com.elearningplatform.dto.request.ClientReq.UpdateClientProfileRequest;
 import com.elearningplatform.dto.request.PostReq.CreatePostRequest;
 import com.elearningplatform.dto.response.ApiResponse;
-import com.elearningplatform.dto.response.ClientRes.RatingResponse;
 import com.elearningplatform.dto.response.PostRes.CreatePostResponse;
 
 public interface ClientService {
@@ -14,7 +13,7 @@ public interface ClientService {
     CreatePostResponse createPost(CreatePostRequest request);
     void deletePost(Long id);
     Client viewProfile(Long id);
-    RatingResponse rateTeacher(RateTeacherRequest request);
+    RateTeacherRequest rateTeacher(RateTeacherRequest request);
     void videoCall(Long id);
     void receiveNotification(Long id);
     void sendReminder(Long id);
