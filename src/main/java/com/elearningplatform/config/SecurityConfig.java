@@ -42,6 +42,14 @@ public class SecurityConfig {
                                 "api/v1/admin/suspend-teacher",
                                 "api/v1/admin/reactivate-teacher",
                                 "api/v1/admin/delete-teacher").hasAnyAuthority("SUPER_ADMIN","ADMIN")
+                        .requestMatchers(
+                                "api/v1/rating/rate-teacher",
+                                "api/v1/rating/teacher/update-rating",
+                                "api/v1/rating/get-teacher-ratings",
+                                "api/v1/rating/get-rating-summary",
+                                "api/v1/posts/create-post",
+                                "api/v1/posts/get-all-posts",
+                                "api/v1/posts/delete").hasAnyAuthority("CLIENT","TEACHER")
                         .requestMatchers("/ws/**").permitAll()
                         .anyRequest().authenticated()
                 )

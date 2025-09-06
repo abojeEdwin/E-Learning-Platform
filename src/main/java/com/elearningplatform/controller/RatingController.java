@@ -27,7 +27,7 @@ public class RatingController {
         return ResponseEntity.ok(ratingService.rateTeacher(request));
     }
 
-    @GetMapping("/teachers/{teacherId}/summary")
+    @GetMapping("/get-rating-summary/{teacherId}/summary")
     public ResponseEntity<RatingSummary> getRatingSummary(@PathVariable Long teacherId) {
         return ResponseEntity.ok(ratingService.getTeacherRatingSummary(teacherId));
     }
@@ -37,7 +37,7 @@ public class RatingController {
         return ResponseEntity.ok(ratingService.updateRating(request));
     }
 
-    @GetMapping("/teachers/{teacherId}")
+    @GetMapping("/get-teacher-ratings/{teacherId}")
     public ResponseEntity<List<RateTeacherResponse>> getTeacherRatings(@PathVariable Long teacherId) {
         List<RatingEntity> ratings = ratingService.getTeacherRatings(teacherId);
         List<RateTeacherResponse> responses = ratings.stream()
