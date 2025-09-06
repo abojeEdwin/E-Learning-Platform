@@ -114,13 +114,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(body);
     }
-//
-//    @ExceptionHandler(CashierNotManagedException.class)
-//    public ResponseEntity<Map<String, String>> handleCashierError(CashierNotManagedException ex) {
-//        Map<String, String> body = new HashMap<>();
-//        body.put("message", ex.getMessage());
-//        return ResponseEntity.status(HttpStatus.FORBIDDEN)
-//                .body(body);
-//    }
+
+    @ExceptionHandler(PostNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleCashierError(PostNotFoundException ex) {
+        Map<String, String> body = new HashMap<>();
+        body.put("message", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body(body);
+    }
 
 }

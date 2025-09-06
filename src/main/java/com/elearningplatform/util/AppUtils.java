@@ -21,6 +21,9 @@ public class AppUtils {
     public static final String ADMIN_ALREADY_EXIST =  "Admin already exist, please check your credentials";
     public static final String ILLEGAL_OPERATION = "Illegal operation";
     public static final String CLIENT_SUSPENDED_SUCCESSFULLY = "Client suspended successfully";
+    public static final String POST_NOT_FOUND = "Post not found";
+    public static final String POST_DELETED_SUCCESSFULLY = "Post deleted successfully";
+    public static final String NOT_AUTHORIZED = "You are not authorized to perform this operation";
 
 
 

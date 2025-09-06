@@ -12,15 +12,16 @@ public interface ClientService {
 
     ApiResponse updateProfile (UpdateClientProfileRequest request);
     CreatePostResponse createPost(CreatePostRequest request);
-    Client viewProfile(String id);
+    void deletePost(Long id);
+    Client viewProfile(Long id);
     RatingResponse rateTeacher(RateTeacherRequest request);
-    void videoCall(String id);
-    void receiveNotification(String id);
-    void sendReminder(String id);
-    void sendFriendRequest(String id);
-    void acceptFriendRequest(String id);
-    void declineFriendRequest(String id);
-    void removeFriend(String id);
+    void videoCall(Long id);
+    void receiveNotification(Long id);
+    void sendReminder(Long id);
+    void sendFriendRequest(Long id);
+    void acceptFriendRequest(Long id);
+    void declineFriendRequest(Long id);
+    void removeFriend(Long id);
 
 
 }

@@ -14,7 +14,6 @@ public class CreatePostResponse {
     private String title;
     private String content;
     private String imageUrl;
-    private String createdBy;
     private String role;
     private LocalDateTime createdAt;
 
