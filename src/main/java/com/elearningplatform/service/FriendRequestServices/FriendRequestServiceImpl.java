@@ -60,7 +60,7 @@ public class FriendRequestServiceImpl implements FriendRequestService {
             senderId = teacher.getId();
             senderType = Roles.TEACHER;}
 
-        friendRequestRepository.findBySenderAndReceiverIdAndRoles(
+        friendRequestRepository.findBySenderIdAndReceiverIdAndSenderRoleAndReceiverRole(
                 senderId, request.getReceiverId(), senderType, request.getReceiverRole()
         ).ifPresent(req -> {
             throw new FriendRequestAlreadyExistException(FRIEND_ALREADY_EXIST);

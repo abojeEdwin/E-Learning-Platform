@@ -6,8 +6,10 @@ import com.elearningplatform.dto.response.FriendRequestRes.AcceptFriendRequestRe
 import com.elearningplatform.dto.response.FriendRequestRes.RejectFriendRequestResponse;
 import com.elearningplatform.dto.response.FriendRequestRes.SendFriendRequestResponse;
 import com.elearningplatform.service.FriendRequestServices.FriendRequestService;
+import com.elearningplatform.service.FriendRequestServices.FriendRequestServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +20,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FriendRequestController {
 
-    private final FriendRequestService friendRequestService;
+    @Autowired
+    private final FriendRequestServiceImpl friendRequestService;
 
     @PostMapping("/send-request")
     public ResponseEntity<SendFriendRequestResponse> sendFriendRequest(@Valid @RequestBody SendFriendRequest request){
