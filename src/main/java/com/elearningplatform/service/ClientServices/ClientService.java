@@ -1,6 +1,7 @@
 package com.elearningplatform.service.ClientServices;
 
 import com.elearningplatform.data.model.Client;
+import com.elearningplatform.data.model.Lesson;
 import com.elearningplatform.dto.request.ClientReq.RateTeacherRequest;
 import com.elearningplatform.dto.request.ClientReq.UpdateClientProfileRequest;
 import com.elearningplatform.dto.request.PostReq.CreatePostRequest;
@@ -14,6 +15,7 @@ public interface ClientService {
     void deletePost(Long id);
     Client viewProfile(Long id);
     RateTeacherRequest rateTeacher(RateTeacherRequest request);
+    void bookLesson(Lesson lesson);
     void videoCall(Long id);
     void receiveNotification(Long id);
     void sendReminder(Long id);

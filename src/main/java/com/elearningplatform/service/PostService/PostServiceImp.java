@@ -1,4 +1,4 @@
-package com.elearningplatform.service.PostServiceImpl;
+package com.elearningplatform.service.PostService;
 
 import com.elearningplatform.data.enums.Roles;
 import com.elearningplatform.data.model.Client;
@@ -13,7 +13,6 @@ import com.elearningplatform.exception.IllegalOperationException;
 import com.elearningplatform.exception.NotAuthorizedException;
 import com.elearningplatform.exception.PostNotFoundException;
 import com.elearningplatform.exception.UserNotFoundException;
-import com.elearningplatform.service.PostService.PostService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 

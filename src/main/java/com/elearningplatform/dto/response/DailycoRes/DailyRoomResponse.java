@@ -1,4 +1,4 @@
-package com.elearningplatform.dto.response;
+package com.elearningplatform.dto.response.DailycoRes;
 
 
 import lombok.Getter;

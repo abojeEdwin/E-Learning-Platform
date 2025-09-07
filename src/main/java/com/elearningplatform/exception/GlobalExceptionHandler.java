@@ -88,6 +88,24 @@ public class GlobalExceptionHandler {
                 .body(body);
     }
 
+
+    @ExceptionHandler(FriendRequestNotFound.class)
+    public ResponseEntity<Map<String, String>> handleUserNameAlreadyExist(FriendRequestNotFound ex) {
+        Map<String, String> body = new HashMap<>();
+        body.put("message", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(body);
+    }
+
+    @ExceptionHandler(FriendRequestAlreadyExistException.class)
+    public ResponseEntity<Map<String, String>> handleUserNameAlreadyExist(FriendRequestAlreadyExistException ex) {
+        Map<String, String> body = new HashMap<>();
+        body.put("message", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body(body);
+    }
+
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, String>> handleAll(Exception ex) {
         ex.printStackTrace();
@@ -96,6 +114,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest()
                 .body(body);
     }
+
+
 
 //    @ExceptionHandler(MethodArgumentNotValidException.class)
 //    public ResponseEntity<Map<String, String>> handleValidationErrors(MethodArgumentNotValidException ex) {

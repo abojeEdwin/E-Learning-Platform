@@ -49,7 +49,11 @@ public class SecurityConfig {
                                 "api/v1/rating/get-rating-summary",
                                 "api/v1/posts/create-post",
                                 "api/v1/posts/get-all-posts",
-                                "api/v1/posts/delete").hasAnyAuthority("CLIENT","TEACHER")
+                                "api/v1/posts/delete",
+                                "api/v1/friendRequest/send-request",
+                                "api/v1/friendRequest/accept",
+                                "api/v1/friendRequest/reject",
+                                "api/v1/friendRequest/pending").hasAnyAuthority("CLIENT","TEACHER")
                         .requestMatchers("/ws/**").permitAll()
                         .anyRequest().authenticated()
                 )

@@ -3,7 +3,7 @@ package com.elearningplatform.controller;
 
 import com.elearningplatform.dto.request.PostReq.CreatePostRequest;
 import com.elearningplatform.dto.response.PostRes.CreatePostResponse;
-import com.elearningplatform.service.PostServiceImpl.PostServiceImp;
+import com.elearningplatform.service.PostService.PostServiceImp;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

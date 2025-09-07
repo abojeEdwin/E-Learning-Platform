@@ -26,7 +26,11 @@ public class AppUtils {
     public static final String NOT_AUTHORIZED = "You are not authorized to perform this operation";
     public static final String TEACHER_ALREADY_RATED = "Client already rated this teacher";
     public static final String RATING_NOT_FOUND = "Rating not found";
-
+    public static final String FRIEND_ALREADY_EXIST = "Friend already already exist";
+    public static final String FRIEND_REQUEST_SENT = "Friend request sent successfully";
+    public static final String FRIEND_REQUEST_NOT_FOUND = "Friend request not found";
+    public static final String FRIEND_REQUEST_ACCEPTED = "Friend request accepted";
+    public static final String FRIEND_REQUEST_REJECTED = "Friend request rejected";
 
 
 

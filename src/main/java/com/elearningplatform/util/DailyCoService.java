@@ -1,8 +1,8 @@
 package com.elearningplatform.util;
 
 
-import com.elearningplatform.dto.response.DailyMeetingTokenResponse;
-import com.elearningplatform.dto.response.DailyRoomResponse;
+import com.elearningplatform.dto.response.DailycoRes.DailyMeetingTokenResponse;
+import com.elearningplatform.dto.response.DailycoRes.DailyRoomResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
