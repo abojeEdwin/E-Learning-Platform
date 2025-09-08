@@ -19,15 +19,15 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public ApiResponse updateProfile(UpdateClientProfileRequest request) {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Client client = clientRepository.findByUsername(username).orElse(null);
-        if (client == null) {throw new ClientNotFoundException(CLIENT_NOT_FOUND);}
-        client.setFullName(request.getFullName());
-        client.setAddress(request.getAddress());
-        client.setPhone(request.getPhone());
-        client.setLocation(request.getLocation());
-        Client savedClient = clientRepository.save(client);
-        return new ApiResponse(Boolean.TRUE, PROFILE_UPDATE_SUCCESSFULLY,savedClient);
+            String username = SecurityContextHolder.getContext().getAuthentication().getName();
+            Client client = clientRepository.findByUsername(username).orElse(null);
+            if (client == null) {throw new ClientNotFoundException(CLIENT_NOT_FOUND);}
+            client.setFullName(request.getFullName());
+            client.setAddress(request.getAddress());
+            client.setPhone(request.getPhone());
+            client.setLocation(request.getLocation());
+            Client savedClient = clientRepository.save(client);
+            return new ApiResponse(Boolean.TRUE, PROFILE_UPDATE_SUCCESSFULLY,savedClient);
     }
 
     @Override
