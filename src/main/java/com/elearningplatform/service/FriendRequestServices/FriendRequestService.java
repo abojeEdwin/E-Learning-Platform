@@ -5,7 +5,6 @@ import com.elearningplatform.dto.request.FriendRequestReq.SendFriendRequest;
 import com.elearningplatform.dto.response.FriendRequestRes.AcceptFriendRequestResponse;
 import com.elearningplatform.dto.response.FriendRequestRes.RejectFriendRequestResponse;
 import com.elearningplatform.dto.response.FriendRequestRes.SendFriendRequestResponse;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

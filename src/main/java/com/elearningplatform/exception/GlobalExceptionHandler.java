@@ -88,6 +88,22 @@ public class GlobalExceptionHandler {
                 .body(body);
     }
 
+    @ExceptionHandler(LessonNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleUserNameAlreadyExist(LessonNotFoundException ex) {
+        Map<String, String> body = new HashMap<>();
+        body.put("message", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(body);
+    }
+    @ExceptionHandler(InvalidLessonException.class)
+    public ResponseEntity<Map<String, String>> handleUserNameAlreadyExist(InvalidLessonException ex) {
+        Map<String, String> body = new HashMap<>();
+        body.put("message", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body(body);
+    }
+
+
 
     @ExceptionHandler(FriendRequestNotFound.class)
     public ResponseEntity<Map<String, String>> handleUserNameAlreadyExist(FriendRequestNotFound ex) {

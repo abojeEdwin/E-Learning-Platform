@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+
 @Entity
 @Getter
 @Setter
@@ -58,12 +59,19 @@ public class Teacher implements UserDetails{
     @Column(nullable = true)
     private Status status;
 
+    @Column(precision = 3, scale = 2)
+    private Double averageRating;
+
+    @Column(nullable = true)
+    private Long totalRating;
+
     @ManyToMany
     @JoinTable(
             name = "teacher_client",
             joinColumns = @JoinColumn(name = "teacher_id"),
             inverseJoinColumns = @JoinColumn(name = "client_id")
     )
+
     private Set<Client> clientList;
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -103,4 +111,5 @@ public class Teacher implements UserDetails{
     public boolean isEnabled() {
         return UserDetails.super.isEnabled();
     }
+
 }

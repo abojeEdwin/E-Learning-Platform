@@ -31,6 +31,10 @@ public class AppUtils {
     public static final String FRIEND_REQUEST_NOT_FOUND = "Friend request not found";
     public static final String FRIEND_REQUEST_ACCEPTED = "Friend request accepted";
     public static final String FRIEND_REQUEST_REJECTED = "Friend request rejected";
+    public static final String LESSON_NOT_VALID = "Lesson is not in a valid state for video call";
+    public static final String LESSON_NOT_FOUND = "Lesson not found, please check your credentials";
+    public static final String TEACHER_NOT_ALLOWED = "User is not the teacher for this lesson";
+    public static final String CLIENT_NOT_ALLOWED = "User is not the client for this lesson";
 
 
 

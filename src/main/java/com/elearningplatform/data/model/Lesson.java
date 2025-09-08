@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 @Table(name="table")
 @Entity
 public class Lesson {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

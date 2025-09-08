@@ -5,7 +5,6 @@ import com.elearningplatform.dto.request.FriendRequestReq.SendFriendRequest;
 import com.elearningplatform.dto.response.FriendRequestRes.AcceptFriendRequestResponse;
 import com.elearningplatform.dto.response.FriendRequestRes.RejectFriendRequestResponse;
 import com.elearningplatform.dto.response.FriendRequestRes.SendFriendRequestResponse;
-import com.elearningplatform.service.FriendRequestServices.FriendRequestService;
 import com.elearningplatform.service.FriendRequestServices.FriendRequestServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
