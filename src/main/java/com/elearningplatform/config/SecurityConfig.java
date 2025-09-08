@@ -29,8 +29,12 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/client-auth/**").permitAll()
-                        .requestMatchers("/api/v1/teacher-auth/**").permitAll()
+                        .requestMatchers(
+                                "/api/v1/client-auth/register",
+                                "api/v1/client-auth/login").permitAll()
+                        .requestMatchers(
+                                "/api/v1/teacher-auth/register",
+                                "api/v1/teacher-auth/login").permitAll()
                         .requestMatchers("/api/v1/admin/login").permitAll()
                         .requestMatchers("api/v1/chat/sendMessage").permitAll()
                         .requestMatchers("/api/v1/admin/create-admin").hasAnyAuthority("SUPER_ADMIN")
@@ -43,6 +47,8 @@ public class SecurityConfig {
                                 "api/v1/admin/reactivate-teacher",
                                 "api/v1/admin/delete-teacher").hasAnyAuthority("SUPER_ADMIN","ADMIN")
                         .requestMatchers(
+                                "api/v1/client-auth/update-profile",
+                                "api/v1/client-auth/update-profile",
                                 "api/v1/rating/rate-teacher",
                                 "api/v1/rating/teacher/update-rating",
                                 "api/v1/rating/get-teacher-ratings",
