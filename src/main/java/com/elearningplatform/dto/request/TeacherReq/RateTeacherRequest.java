@@ -1,19 +1,24 @@
-package com.elearningplatform.dto.request.RatingReq;
+package com.elearningplatform.dto.request.TeacherReq;
+
 
 import com.elearningplatform.data.enums.Rating;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UpdateTeacherRequest {
+@AllArgsConstructor
+public class RateTeacherRequest {
 
     @NotNull(message = "This field is required")
-    Long ratingId;
+    Long teacherId;
     @NotNull(message = "This field is required")
-    Rating newRating;
+    Long clientId;
     @NotNull(message = "This field is required")
-    String newComment;
+    Rating rating;
+    @NotNull(message = "This field is required")
+    String comment;
 
 }

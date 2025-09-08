@@ -3,13 +3,12 @@ package com.elearningplatform.controller;
 
 import com.elearningplatform.dto.request.AdminReq.CreateAdminRequest;
 import com.elearningplatform.dto.request.AdminReq.LoginAdminRequest;
-import com.elearningplatform.dto.request.AdminReq.ReactivateClientAccountRequest;
 import com.elearningplatform.dto.request.AdminReq.SuspendTeacherAccountRequest;
 import com.elearningplatform.dto.request.ClientReq.SuspendClientAccountRequest;
 import com.elearningplatform.dto.response.AdminRes.CreateAdminResponse;
 import com.elearningplatform.dto.response.AdminRes.LoginAdminResponse;
 import com.elearningplatform.dto.response.ApiResponse;
-import com.elearningplatform.service.AdminServiceImpl.AdminServiceImp;
+import com.elearningplatform.service.AdminServices.AdminServiceImp;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

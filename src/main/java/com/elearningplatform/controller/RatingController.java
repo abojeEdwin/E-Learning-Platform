@@ -2,8 +2,8 @@ package com.elearningplatform.controller;
 
 
 import com.elearningplatform.data.model.RatingEntity;
-import com.elearningplatform.dto.request.RatingReq.RateTeacherRequest;
-import com.elearningplatform.dto.request.RatingReq.UpdateTeacherRequest;
+import com.elearningplatform.dto.request.TeacherReq.RateTeacherRequest;
+import com.elearningplatform.dto.request.TeacherReq.UpdateTeacherRequest;
 import com.elearningplatform.dto.response.RatingRes.RateTeacherResponse;
 import com.elearningplatform.dto.response.RatingRes.RatingSummary;
 import com.elearningplatform.service.RatingService.RatingService;

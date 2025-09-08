@@ -1,4 +1,4 @@
-package com.elearningplatform.service.AdminServiceImpl;
+package com.elearningplatform.service.AdminServices;
 
 import com.elearningplatform.data.enums.Roles;
 import com.elearningplatform.data.enums.Status;
@@ -14,7 +14,6 @@ import com.elearningplatform.dto.response.AdminRes.CreateAdminResponse;
 import com.elearningplatform.dto.response.AdminRes.LoginAdminResponse;
 import com.elearningplatform.dto.response.ApiResponse;
 import com.elearningplatform.exception.*;
-import com.elearningplatform.service.AdminServices.AdminService;
 import com.elearningplatform.util.AppUtils;
 import com.elearningplatform.util.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
