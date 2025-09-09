@@ -13,6 +13,7 @@ import lombok.Setter;
 @Setter
 public class UpdateClientProfileRequest {
 
+//    private Long clientId;
     @NotNull(message = "This field is required")
     private String fullName;
     @NotNull(message = "This field is required")

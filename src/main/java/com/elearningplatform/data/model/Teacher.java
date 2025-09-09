@@ -59,8 +59,9 @@ public class Teacher implements UserDetails{
     @Column(nullable = true)
     private Status status;
 
-    @Column(precision = 3, scale = 2)
-    private Double averageRating;
+
+    @Column(name = "average_rating", nullable = true)
+    private Double averageRating = 0.0;
 
     @Column(nullable = true)
     private Long totalRating;

@@ -1,7 +1,5 @@
 package com.elearningplatform.service.TeacherServices;
 
-
-import com.elearningplatform.data.model.Teacher;
 import com.elearningplatform.dto.request.TeacherReq.UpdateTeacherProfileRequest;
 import com.elearningplatform.dto.response.ApiResponse;
 import org.springframework.stereotype.Service;

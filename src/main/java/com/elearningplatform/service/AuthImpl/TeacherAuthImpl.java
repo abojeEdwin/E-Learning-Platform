@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import static com.elearningplatform.util.AppUtils.*;
 
@@ -63,17 +64,17 @@ public class TeacherAuthImpl implements TeacherAuthService {
 
     @Override
     public LoginTeacherResponse login(LoginTeacherRequest loginRequest) {
-        Teacher foundTeacher = teacherRepository.findByEmail(loginRequest.getEmail());
-        if(!AppUtils.verifyPassword(foundTeacher.getPassword(),loginRequest.getPassword())){
+        Optional<Teacher> foundTeacher = teacherRepository.findByEmail(loginRequest.getEmail());
+        if(!AppUtils.verifyPassword(foundTeacher.get().getPassword(),loginRequest.getPassword())){
             throw new InvalidPasswordException(INVALID_PASSWORD);}
         if(foundTeacher == null){
             throw new TeacherNotFoundException(TEACHER_NOT_FOUND);}
 
-        String token = jwtUtils.generateToken(foundTeacher);
+        String token = jwtUtils.generateToken(foundTeacher.get());
         LoginTeacherResponse response = new LoginTeacherResponse();
         response.setToken(token);
         response.setSuccess(Boolean.TRUE);
-        response.setTeacher(foundTeacher);
+        response.setTeacher(foundTeacher.get());
         response.setMessage(TEACHER_LOGIN_SUCCESSFULLY);
         return response;
     }

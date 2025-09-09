@@ -48,7 +48,9 @@ public class SecurityConfig {
                                 "api/v1/admin/delete-teacher").hasAnyAuthority("SUPER_ADMIN","ADMIN")
                         .requestMatchers(
                                 "api/v1/client-auth/update-profile",
-                                "api/v1/client-auth/update-profile",
+                                "api/v1/client-auth/view-profile",
+                                "api/v1/teacher-auth/update-profile",
+                                "api/v1/teacher-auth/view-profile",
                                 "api/v1/rating/rate-teacher",
                                 "api/v1/rating/teacher/update-rating",
                                 "api/v1/rating/get-teacher-ratings",

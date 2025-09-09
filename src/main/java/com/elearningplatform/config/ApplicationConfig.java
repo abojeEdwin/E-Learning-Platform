@@ -19,6 +19,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.Optional;
+
 import static com.elearningplatform.util.AppUtils.USER_NOT_FOUND;
 
 @Configuration
@@ -36,20 +38,19 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService() throws UserNotFoundException {
+    public UserDetailsService userDetailsService() {
         return username -> {
-            UserDetails user = adminRepository.findByUsername(username)
-                    .orElse(null);
-            if(user == null) {
-                UserDetails admin = clientRepository.findByUsername(username)
-                        .orElse(null);}
-            if (user == null) {
-               UserDetails teacher = teacherRepository.findByUsername(username)
-                       .orElseThrow(() -> new UserNotFoundException(USER_NOT_FOUND));
-            }
-            return user;
+            Optional<? extends UserDetails> admin = adminRepository.findByUsername(username);
+            if (admin.isPresent()) {
+                return admin.get();}
+            Optional<? extends UserDetails> client = clientRepository.findByUsername(username);
+            if (client.isPresent()) {
+                return client.get();}
+            return teacherRepository.findByUsername(username)
+                    .orElseThrow(() -> new UserNotFoundException(USER_NOT_FOUND));
         };
     }
+
 
 
     @Bean
