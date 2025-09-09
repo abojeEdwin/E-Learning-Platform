@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="table")
+@Table(name="lesson")
 @Entity
 public class Lesson {
 
