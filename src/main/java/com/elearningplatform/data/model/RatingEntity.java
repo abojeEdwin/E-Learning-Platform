@@ -24,7 +24,7 @@ public class RatingEntity {
 
     @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
-    private Rating rating;
+    private Rating rate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "teacher_id", nullable = false)
@@ -35,6 +35,8 @@ public class RatingEntity {
     @JoinColumn(name = "client_id", nullable = false)
     @JsonManagedReference
     private Client client;
+
+    private Double rating = 0.0;
 
     @Column(length = 500)
     private String comment;

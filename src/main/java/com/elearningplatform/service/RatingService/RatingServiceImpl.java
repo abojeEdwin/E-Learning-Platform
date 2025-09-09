@@ -50,7 +50,7 @@ public class RatingServiceImpl implements RatingService{
             throw new IllegalStateException(TEACHER_ALREADY_RATED);}
 
         RatingEntity ratingEntity = new RatingEntity();
-        ratingEntity.setRating(request.getRating());
+        ratingEntity.setRate(request.getRating());
         ratingEntity.setTeacher(teacher.get());
         ratingEntity.setClient(client.get());
         ratingEntity.setComment(request.getComment());
@@ -58,7 +58,7 @@ public class RatingServiceImpl implements RatingService{
         RatingEntity savedEntity = ratingRepository.save(ratingEntity);
         return new RateTeacherResponse(
                 savedEntity.getId(),
-                savedEntity.getRating(),
+                savedEntity.getRate(),
                 savedEntity.getComment(),
                 savedEntity.getCreatedAt(),
                 savedEntity.getClient().getId(),
@@ -69,12 +69,12 @@ public class RatingServiceImpl implements RatingService{
     public RateTeacherResponse updateRating(UpdateTeacherRequest request) {
         RatingEntity rating = ratingRepository.findById(request.getRatingId())
                 .orElseThrow(() -> new RatingNotFoundException(RATING_NOT_FOUND));
-        rating.setRating(request.getNewRating());
+        rating.setRate(request.getNewRating());
         rating.setComment(request.getNewComment());
         ratingRepository.save(rating);
         return new RateTeacherResponse(
                 rating.getId(),
-                rating.getRating(),
+                rating.getRate(),
                 rating.getComment(),
                 rating.getCreatedAt(),
                 rating.getClient().getId(),
@@ -83,8 +83,7 @@ public class RatingServiceImpl implements RatingService{
 
     @Override
     public RatingSummary getTeacherRatingSummary(Long teacherId) {
-        Double averageRating = ratingRepository.findAverageRatingByTeacherId(teacherId)
-                .orElse(0.0);
+        Double averageRating = ratingRepository.findAverageRatingByTeacherId(teacherId);
         Long totalRatings = ratingRepository.countByTeacherId(teacherId);
         Map<Rating, Long> ratingDistribution = new EnumMap<>(Rating.class);
         for (Rating rating : Rating.values()) {

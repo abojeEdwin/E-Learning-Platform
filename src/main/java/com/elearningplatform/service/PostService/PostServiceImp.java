@@ -93,15 +93,13 @@ public class PostServiceImp implements PostService {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
         Post post = postRepository.findById(id).orElseThrow(() -> new PostNotFoundException(POST_NOT_FOUND));
-        Client client = clientRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException(USER_NOT_FOUND));
-        Teacher teacher = (client == null) ? teacherRepository.findByUsername(username).orElseThrow(()->new UserNotFoundException(USER_NOT_FOUND)) : null;
+        Client client = clientRepository.findByUsername(username).orElseThrow(() ->  new NotAuthorizedException(NOT_AUTHORIZED));
+        Teacher teacher = (client == null) ? teacherRepository.findByUsername(username).orElseThrow(()-> new NotAuthorizedException(NOT_AUTHORIZED)) : null;
         if(client.getId() != post.getClient().getId() && teacher.getId() != post.getTeacher().getId()) {
             throw new NotAuthorizedException(NOT_AUTHORIZED);
         }
         if (client == null && teacher == null) {throw new UserNotFoundException(USER_NOT_FOUND);}
         Roles userRole = client != null ? client.getRoles() : teacher.getRoles();
-//        if (!post.getRole().equals(Roles.CLIENT) || !post.getRole().equals(Roles.TEACHER)&& userRole != Roles.SUPER_ADMIN || userRole != Roles.ADMIN) {
-//            throw new NotAuthorizedException(NOT_AUTHORIZED);}
     return post;
 }
 }

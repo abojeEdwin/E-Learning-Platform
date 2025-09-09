@@ -49,7 +49,7 @@ public class RatingController {
     private RateTeacherResponse toResponse(RatingEntity rating) {
         return new RateTeacherResponse(
                 rating.getId(),
-                rating.getRating(),
+                rating.getRate(),
                 rating.getComment(),
                 rating.getCreatedAt(),
                 rating.getClient().getId(),
