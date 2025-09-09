@@ -2,6 +2,7 @@ package com.elearningplatform.data.model;
 
 
 import com.elearningplatform.data.enums.LessonStatus;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,10 +25,12 @@ public class Lesson {
 
     @ManyToOne
     @JoinColumn(name = "teacher_id", nullable = false)
+    @JsonManagedReference
     private Teacher teacher;
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
+    @JsonManagedReference
     private Client client;
 
     private LocalDateTime startTime;

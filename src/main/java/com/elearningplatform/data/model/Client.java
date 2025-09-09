@@ -4,6 +4,8 @@ package com.elearningplatform.data.model;
 import com.elearningplatform.data.enums.Gender;
 import com.elearningplatform.data.enums.Roles;
 import com.elearningplatform.data.enums.Status;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -69,9 +71,11 @@ public class Client implements UserDetails {
     private Set<Teacher> teacherList;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<Post> posts;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Chat> chats;
 
     @Column(nullable = false)

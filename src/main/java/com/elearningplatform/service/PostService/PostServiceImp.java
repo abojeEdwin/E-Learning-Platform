@@ -13,6 +13,7 @@ import com.elearningplatform.exception.IllegalOperationException;
 import com.elearningplatform.exception.NotAuthorizedException;
 import com.elearningplatform.exception.PostNotFoundException;
 import com.elearningplatform.exception.UserNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +27,11 @@ import static com.elearningplatform.util.AppUtils.*;
 @Service
 public class PostServiceImp implements PostService {
 
+    @Autowired
     private PostRepository postRepository;
+    @Autowired
     private ClientRepository clientRepository;
+    @Autowired
     private TeacherRepository teacherRepository;
 
 
@@ -36,10 +40,9 @@ public class PostServiceImp implements PostService {
 
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         Client client = clientRepository.findByUsername(username).orElse(null);
-        Teacher teacher = null;
+        Teacher teacher = teacherRepository.findByUsername(username).orElse(null);
         if (client == null) {
-            teacher = teacherRepository.findByUsername(username)
-                    .orElseThrow(() -> new UserNotFoundException(USER_NOT_FOUND));}
+            throw new UserNotFoundException(USER_NOT_FOUND);}
         Roles userRole;
         if (client != null) {
             userRole = client.getRoles();
@@ -52,6 +55,8 @@ public class PostServiceImp implements PostService {
                 .content(request.getContent())
                 .imageUrl(request.getImageUrl())
                 .role(userRole)
+                .client(client)
+                .teacher(teacher)
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
                 .build();
@@ -87,12 +92,16 @@ public class PostServiceImp implements PostService {
     private Post getPost(Long id) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        Post post = postRepository.findById(id)
-                .orElseThrow(() -> new PostNotFoundException(POST_NOT_FOUND));
-        Client client = clientRepository.findByUsername(username).orElse(null);
-        Teacher teacher = (client == null) ? teacherRepository.findByUsername(username).orElse(null) : null;
+        Post post = postRepository.findById(id).orElseThrow(() -> new PostNotFoundException(POST_NOT_FOUND));
+        Client client = clientRepository.findByUsername(username).orElseThrow(() -> new UserNotFoundException(USER_NOT_FOUND));
+        Teacher teacher = (client == null) ? teacherRepository.findByUsername(username).orElseThrow(()->new UserNotFoundException(USER_NOT_FOUND)) : null;
+        if(client.getId() != post.getClient().getId() && teacher.getId() != post.getTeacher().getId()) {
+            throw new NotAuthorizedException(NOT_AUTHORIZED);
+        }
         if (client == null && teacher == null) {throw new UserNotFoundException(USER_NOT_FOUND);}
         Roles userRole = client != null ? client.getRoles() : teacher.getRoles();
-        if (!post.getRole().equals(Roles.CLIENT) || !post.getRole().equals(Roles.TEACHER)&& userRole != Roles.SUPER_ADMIN || userRole != Roles.ADMIN) {
-            throw new NotAuthorizedException(NOT_AUTHORIZED);}return post;}
+//        if (!post.getRole().equals(Roles.CLIENT) || !post.getRole().equals(Roles.TEACHER)&& userRole != Roles.SUPER_ADMIN || userRole != Roles.ADMIN) {
+//            throw new NotAuthorizedException(NOT_AUTHORIZED);}
+    return post;
+}
 }

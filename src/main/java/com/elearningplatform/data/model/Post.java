@@ -2,6 +2,7 @@ package com.elearningplatform.data.model;
 
 
 import com.elearningplatform.data.enums.Roles;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -32,10 +33,12 @@ public class Post {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "teacher_id")
+    @JsonManagedReference
     private Teacher teacher;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
+    @JsonManagedReference
     private Client client;
 
     @Enumerated(EnumType.STRING)

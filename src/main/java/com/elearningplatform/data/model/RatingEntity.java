@@ -2,6 +2,7 @@ package com.elearningplatform.data.model;
 
 
 import com.elearningplatform.data.enums.Rating;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,10 +28,12 @@ public class RatingEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "teacher_id", nullable = false)
+    @JsonManagedReference
     private Teacher teacher;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id", nullable = false)
+    @JsonManagedReference
     private Client client;
 
     @Column(length = 500)

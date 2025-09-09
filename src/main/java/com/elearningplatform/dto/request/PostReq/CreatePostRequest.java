@@ -17,7 +17,7 @@ public class CreatePostRequest {
     private String title;
     @NotNull(message="This field is required")
     private String content;
-    @NotNull(message="This field is required")
+
     private String imageUrl;
 
 }

@@ -3,6 +3,8 @@ package com.elearningplatform.data.model;
 import com.elearningplatform.data.enums.Gender;
 import com.elearningplatform.data.enums.Roles;
 import com.elearningplatform.data.enums.Status;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -72,13 +74,14 @@ public class Teacher implements UserDetails{
             joinColumns = @JoinColumn(name = "teacher_id"),
             inverseJoinColumns = @JoinColumn(name = "client_id")
     )
-
     private Set<Client> clientList;
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Chat> chats;
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<Post> posts;
 
     @Column(nullable = false)
