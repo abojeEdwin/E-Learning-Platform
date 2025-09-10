@@ -61,13 +61,6 @@ public class Teacher implements UserDetails{
     @Column(nullable = true)
     private Status status;
 
-
-    @Column(name = "average_rating", nullable = true)
-    private Double averageRating = 0.0;
-
-    @Column(nullable = true)
-    private Long totalRating;
-
     @ManyToMany
     @JoinTable(
             name = "teacher_client",

@@ -27,11 +27,6 @@ public class RatingController {
         return ResponseEntity.ok(ratingService.rateTeacher(request));
     }
 
-    @GetMapping("/get-rating-summary/{teacherId}/summary")
-    public ResponseEntity<RatingSummary> getRatingSummary(@PathVariable Long teacherId) {
-        return ResponseEntity.ok(ratingService.getTeacherRatingSummary(teacherId));
-    }
-
     @PutMapping("/teacher/update-rating")
     public ResponseEntity<RateTeacherResponse> updateRating(@Valid @RequestBody UpdateTeacherRequest request) {
         return ResponseEntity.ok(ratingService.updateRating(request));
@@ -49,7 +44,7 @@ public class RatingController {
     private RateTeacherResponse toResponse(RatingEntity rating) {
         return new RateTeacherResponse(
                 rating.getId(),
-                rating.getRate(),
+                rating.getRating(),
                 rating.getComment(),
                 rating.getCreatedAt(),
                 rating.getClient().getId(),
